@@ -1,0 +1,197 @@
+table orders
+	lineageTag: 5720d46d-27fe-4764-a775-2bc14689c5a2
+
+	column order_id
+		dataType: string
+		lineageTag: 57a90f2e-b7a5-4d20-a926-c218a5fa4927
+		summarizeBy: none
+		sourceColumn: order_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column customer_id
+		dataType: string
+		lineageTag: 514a8b29-cf8a-4dba-a002-82b15d752ba7
+		summarizeBy: none
+		sourceColumn: customer_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_status
+		dataType: string
+		lineageTag: a085a1ad-1463-439c-b250-374ff48a1902
+		summarizeBy: none
+		sourceColumn: order_status
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_purchase_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 249d29d0-111f-425c-a607-b74baf742831
+		summarizeBy: none
+		sourceColumn: order_purchase_timestamp
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_approved_at_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 749d5d00-7c1f-4a9a-bfe5-f5fb06da4f03
+		summarizeBy: none
+		sourceColumn: order_approved_at_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 2af47088-21d7-43d6-ac01-24b80be5d4b9
+			defaultHierarchy: LocalDateTable_ab6d233b-ad6e-4f31-942e-fa49005a48e5.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_delivered_carrier_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: a17f01cc-7d1e-4ce6-9064-6033b068ff14
+		summarizeBy: none
+		sourceColumn: order_delivered_carrier_timestamp
+
+		variation Variation
+			isDefault
+			relationship: f65467c7-e993-4ff8-8864-521ba23ebe2a
+			defaultHierarchy: LocalDateTable_43103459-5fc2-4835-bd9d-14e62d1c2a94.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_delivered_customer_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 52dc3a51-6b9a-41b0-bb5d-04339e13d8d9
+		summarizeBy: none
+		sourceColumn: order_delivered_customer_timestamp
+
+		variation Variation
+			isDefault
+			relationship: f229b9c1-7846-4d65-9394-de8faec7b849
+			defaultHierarchy: LocalDateTable_333c3d49-c3ca-455a-91a0-50f591d6bbcb.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_estimated_delivery_timestamp
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 056df752-5733-4896-8b46-c5a6036fcb13
+		summarizeBy: none
+		sourceColumn: order_estimated_delivery_timestamp
+
+		variation Variation
+			isDefault
+			relationship: 99d4c528-a076-40a7-8229-7ee8b203e6f4
+			defaultHierarchy: LocalDateTable_1ef705b5-9b3d-45ca-a677-e3791ca43b54.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column order_purchase_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 0495b72d-4f96-490c-a61a-e527cc1f303e
+		summarizeBy: none
+		sourceColumn: order_purchase_date
+
+		variation Variation
+			isDefault
+			relationship: 891f8edf-0395-4562-a1d5-320fbb73bf1e
+			defaultHierarchy: LocalDateTable_2042e1ac-4791-4b7f-9811-60208f4e55dd.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column order_approved_at_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3db239af-bcde-428e-ab9a-73bdbc3c7482
+		summarizeBy: none
+		sourceColumn: order_approved_at_date
+
+		variation Variation
+			isDefault
+			relationship: 2d6536aa-16bd-4538-a4b5-09a445e9e49d
+			defaultHierarchy: LocalDateTable_562e4369-35fd-454d-8ff0-6d2fd6009371.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column order_delivered_carrier_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6bae8db5-4415-4144-8efb-ac837fc6f6f4
+		summarizeBy: none
+		sourceColumn: order_delivered_carrier_date
+
+		variation Variation
+			isDefault
+			relationship: c475d81b-f8cf-47a8-9f95-f219947240d0
+			defaultHierarchy: LocalDateTable_30253006-cdf0-4ac6-ad18-59d65e4b2cb2.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column order_delivered_customer_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b3605c02-8663-46f1-907b-e16aa1dc1363
+		summarizeBy: none
+		sourceColumn: order_delivered_customer_date
+
+		variation Variation
+			isDefault
+			relationship: 8d6aa03f-734a-48a0-9e0c-5e3a553381b8
+			defaultHierarchy: LocalDateTable_cd802a6c-ca9d-43a8-9ecf-ebb9dccbf12b.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column order_estimated_delivery_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e18bfc2c-1695-4846-9c0f-013cdb1a4024
+		summarizeBy: none
+		sourceColumn: order_estimated_delivery_date
+
+		variation Variation
+			isDefault
+			relationship: d856ddd0-0227-46e2-8128-03bd2351b7b6
+			defaultHierarchy: LocalDateTable_0eecdb1e-4c24-4c8c-a4bf-4b48f8d402fc.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition orders = m
+		mode: import
+		source = ```
+				let
+				    Fonte = Csv.Document(File.Contents("C:\Users\levia\Desktop\Profissional\data_challenge_olist_ecommerce\Turma 2 - Base de dados\orders.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"order_purchase_timestamp", type datetime}, {"order_approved_at", type datetime}, {"order_delivered_carrier_date", type datetime}, {"order_delivered_customer_date", type datetime}, {"order_estimated_delivery_date", type datetime}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{
+				{"order_approved_at", "order_approved_at_timestamp"}, 
+				{"order_delivered_carrier_date", "order_delivered_carrier_timestamp"}, 
+				{"order_delivered_customer_date", "order_delivered_customer_timestamp"}, 
+				{"order_estimated_delivery_date", "order_estimated_delivery_timestamp"}}),
+				    #"Data Compra" = Table.AddColumn(#"Colunas Renomeadas", "order_purchase_date", each DateTime.Date([order_purchase_timestamp]), type date),
+				    #"Data Aprovação Compra" = Table.AddColumn(#"Data Compra", "order_approved_at_date", each DateTime.Date([order_approved_at_timestamp]), type date),
+				    #"Data Entrega Transportadora" = Table.AddColumn(#"Data Aprovação Compra", "order_delivered_carrier_date", each DateTime.Date([order_delivered_carrier_timestamp]), type date),
+				    #"Data Entrega Cliente" = Table.AddColumn(#"Data Entrega Transportadora", "order_delivered_customer_date", each DateTime.Date([order_delivered_customer_timestamp]), type date),
+				    #"Data Previsão Entrega Cliente" = Table.AddColumn(#"Data Entrega Cliente", "order_estimated_delivery_date", each DateTime.Date([order_estimated_delivery_timestamp]), type date)
+				in
+				    #"Data Previsão Entrega Cliente"
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

@@ -1,40 +1,23 @@
-Tabela orders renomeada para f_orders
-Tabela order_itens renomeada para f_orderitems
-Tabela order_payments renomeada para f_pagamentos
-Tabela order_reviews renomeada para f_avaliacoes
-Tabela customers renomeada para d_clientes
-Tabela geolocation renomeada para d_geolocation
-Tabela products renomeada para d_products
-Tabela sellers renomeada para d_vendedores
-Tabela product_category_name_translation renomeada para d_product_category_name
-Tabela lead_qualified renomeada para d_leads
-Tabela leads_closed renomeada para f_deals
+Tabela "Orders":
+
+- Colunas renomeadas:
+    order_approved_at = order_approved_at_timestamp
+    order_delivered_carrier_date = order_delivered_carrier_timestamp
+    order_delivered_customer_date = order_delivered_customer_timestamp
+    order_estimated_delivery_date = order_estimated_delivery_timestamp
+
+- Colunas adicionadas
+    Data Compra: data extraída da order_purchase_timestamp
+    Data Aprovação Compra: data extraída da order_approved_at_timestamp
+    Data Entrega Transportadora: data extraída da order_delivered_carrier_timestamp
+    Data Entrega Cliente: data extraída da order_delivered_customer_timestamp
+    Data Previsão Entrega Cliente: data extraída da order_estimated_delivery_timestamp
 
 
+Tabela "Geolocation":
 
-Primeira linha utilizada como cabeçalho na tabela d_product_category_name
-Realizado um merge queries as new com left outer da tabela f_ordersitems com f_orders, trazendo as colunas da orders para ordersitems e renomeando a tabela nova como f_pedidos
-Desabilitada a carga da tabela f_ordersitems.
-Tabela f_orders renomeada para b_pedidos para ser usada como tabela Bridge entre f_pedidos, f_orderpayments e f_orderreviews.
-Excluídas todas as colunas de b_pedidos exceto order_id, order_status e order_purchase_timestamp.
-Desabilitada a carga da tabela d_geolocation
-Realizado um merge queries as new com left outer da tabela d_products e d_product_category_name para trazer a coluna "product_category_name_english", tabela nomeada de "d_produto".
-Desabilitada a carga da tabela d_products e d_product_category_name
+- Colunas removidas
+    geolocation_lat
+    geolocation_lng
 
-
-Tabela d_calendario criada com o código:
-    let
-        data_inicio = #date(2016, 1, 1),
-        data_fim = #date(2018, 12, 31),
-        qtd_dias = Duration.Days(data_fim - data_inicio) + 1,
-        ListaDatas = List.Dates(data_inicio, qtd_dias, #duration(1, 0, 0, 0)),
-        Tabela = Table.FromList(ListaDatas, Splitter.SplitByNothing(), {"Data"}),
-        #"Tipo Alterado" = Table.TransformColumnTypes(Tabela,{{"Data", type date}})
-    in
-        #"Tipo Alterado"
-
-
-Tipo de dado da coluna f_pedidos[order_estimated_delivery_date] alterado para Data.
-Adicionada uma coluna de Data chamada f_pedidos[delivery_date] que extrai a data da coluna f_pedidos[order_estimated_delivery_date]
-
-Adicionada coluna "total_value" que deriva da soma da coluna price com freight_value na tabela f_pedidos.
+- Duplicatas removidas baseado na coluna "geolocation_zip_code_prefix"

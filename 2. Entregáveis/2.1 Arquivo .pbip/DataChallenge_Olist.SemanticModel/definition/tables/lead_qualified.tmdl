@@ -1,0 +1,57 @@
+table lead_qualified
+	lineageTag: bfd5c309-9e73-4f44-998c-be0866064ed4
+
+	column mql_id
+		dataType: string
+		lineageTag: ab9579bf-471b-461b-907d-ebebd639f1a7
+		summarizeBy: none
+		sourceColumn: mql_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column first_contact_date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 8471dbe4-d912-4fe2-ad8d-823c01830f3f
+		summarizeBy: none
+		sourceColumn: first_contact_date
+
+		variation Variation
+			isDefault
+			relationship: 68350f7d-f941-4055-9236-6c9c3a87bcd4
+			defaultHierarchy: LocalDateTable_53c42660-de03-4b0a-8c33-5f6aa690a143.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column landing_page_id
+		dataType: string
+		lineageTag: 6a838a27-bddc-4bb4-a67c-7da0a0abbb69
+		summarizeBy: none
+		sourceColumn: landing_page_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column origin
+		dataType: string
+		lineageTag: 394bf0e8-a828-42dd-90b1-a7b095962539
+		summarizeBy: none
+		sourceColumn: origin
+
+		annotation SummarizationSetBy = Automatic
+
+	partition lead_qualified = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\Users\levia\Desktop\Profissional\data_challenge_olist_ecommerce\Turma 2 - Base de dados\lead_qualified.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"first_contact_date", type date}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

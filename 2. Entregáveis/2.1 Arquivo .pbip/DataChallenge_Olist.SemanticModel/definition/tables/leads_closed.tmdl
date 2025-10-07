@@ -1,0 +1,139 @@
+table leads_closed
+	lineageTag: fbbb7d12-27bf-4471-9ede-a9467de5fc4a
+
+	column mql_id
+		dataType: string
+		lineageTag: 277e5592-a406-4a8b-8bfa-44802152549e
+		summarizeBy: none
+		sourceColumn: mql_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column seller_id
+		dataType: string
+		lineageTag: 82d98bcb-fca8-4dd8-9950-4724c4855a04
+		summarizeBy: none
+		sourceColumn: seller_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column sdr_id
+		dataType: string
+		lineageTag: 8cd4109a-40e9-4293-8892-e611c3986803
+		summarizeBy: none
+		sourceColumn: sdr_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column sr_id
+		dataType: string
+		lineageTag: 793df52f-5995-404e-a9d9-8666cac53828
+		summarizeBy: none
+		sourceColumn: sr_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column won_date
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d0e50b44-d087-4454-ab91-5761d4380d96
+		summarizeBy: none
+		sourceColumn: won_date
+
+		variation Variation
+			isDefault
+			relationship: 93827d14-7d39-4496-9651-e779cc1c8527
+			defaultHierarchy: LocalDateTable_24838e63-dc7d-483e-9308-2fcc26f73b49.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_segment
+		dataType: string
+		lineageTag: 14e9e074-555e-4275-8cfb-773c14a72181
+		summarizeBy: none
+		sourceColumn: business_segment
+
+		annotation SummarizationSetBy = Automatic
+
+	column lead_type
+		dataType: string
+		lineageTag: b3446c36-30f8-41ef-bb7b-b229bb9e5655
+		summarizeBy: none
+		sourceColumn: lead_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column lead_behaviour_profile
+		dataType: string
+		lineageTag: 2a4b9e28-e8c2-4a2d-8833-0ae0e0c909cb
+		summarizeBy: none
+		sourceColumn: lead_behaviour_profile
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_company
+		dataType: int64
+		formatString: 0
+		lineageTag: b1cc6c9f-9a9e-43fb-a69d-bff86d7e47c1
+		summarizeBy: sum
+		sourceColumn: has_company
+
+		annotation SummarizationSetBy = Automatic
+
+	column has_gtin
+		dataType: int64
+		formatString: 0
+		lineageTag: ba843f56-ff20-4cd2-9ca3-04f40ea6450a
+		summarizeBy: sum
+		sourceColumn: has_gtin
+
+		annotation SummarizationSetBy = Automatic
+
+	column average_stock
+		dataType: string
+		lineageTag: 5536be78-4a78-45cc-bfce-77946748bcec
+		summarizeBy: none
+		sourceColumn: average_stock
+
+		annotation SummarizationSetBy = Automatic
+
+	column business_type
+		dataType: string
+		lineageTag: b9a29091-0fd2-4f60-9d70-32c9b890deae
+		summarizeBy: none
+		sourceColumn: business_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column declared_product_catalog_size
+		dataType: int64
+		formatString: 0
+		lineageTag: d36e840b-b7e5-4422-a99f-e608155c28dc
+		summarizeBy: sum
+		sourceColumn: declared_product_catalog_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column declared_monthly_revenue
+		dataType: int64
+		formatString: 0
+		lineageTag: 545551e7-6740-4ac0-be8a-6654c5164aea
+		summarizeBy: sum
+		sourceColumn: declared_monthly_revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	partition leads_closed = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents("C:\Users\levia\Desktop\Profissional\data_challenge_olist_ecommerce\Turma 2 - Base de dados\leads_closed.csv"),[Delimiter=",", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"won_date", type datetime}, {"declared_product_catalog_size", Int64.Type}, {"declared_monthly_revenue", Int64.Type}, {"has_gtin", Int64.Type}, {"has_company", Int64.Type}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
