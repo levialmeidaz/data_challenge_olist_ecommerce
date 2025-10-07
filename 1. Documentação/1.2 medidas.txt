@@ -1,0 +1,2 @@
+qtd_pedidos = DISTINCTCOUNT(f_pedidos[order_id])
+

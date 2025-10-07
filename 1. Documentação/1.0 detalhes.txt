@@ -1,0 +1,54 @@
+Empresa: Olist Store.
+Segmento: Market Place.
+
+Desafios:
+- Não sabem quem são seus clientes mais recorrentes.
+- Não conseguem medir o impacto dos atrasos.
+- Tem dificuldade em entender o comportamento do funil de vendas.
+- Os indicadores são frágeis e não sustentam boas decisões.
+
+
+Missão: 
+
+1. Exploração dos CSVs. 
+- Investigar colunas e tabelas.
+- Entender os relacionamentos.
+- Levantar hipóteses sobre o que pode estar acontecendo com a operação.
+
+
+2. Construção no Power BI.
+- Modele as tabelas de forma consistente
+- Crie medidas DAX bem estruturadas
+- Desenvolva um dashboard estratégico que conte a história da operação.
+
+Exemplo de análises esperadas: 
+- Numero de pedidos entregues vs atrasados
+- Ticket média
+- Categorias mais vendidas
+- Tempo de entrega
+
+- Quais estados concentram mais atrasos
+- Quais categorias sofrem mais cancelamentos
+- A forma de pagamento impacta a satisfação do cliente?
+
+
+3. Entrega Final
+- Dashboard publicado (link público + arquivo .pbix)
+- Documentação técnica completa, incluindo:
+    - Estrutura de modelagem no Power BI
+    - Medidas DAX utilizadas e explicadas
+    - Decisões de transformação de dados
+
+- Apresentação executiva (até 6 slides)
+    - Um storytelling claro
+    - Os insights mais relevantes
+    - O plano de ação para melhorar a operação
+
+OBS: A diretoria não quer saber como você importou os dados, 
+eles querem saber o que você descobriu e o que pode ser feito a partir disso.
+
+
+Entregáveis:
+    - Dashboard público +pbix
+    - Documentação técnica
+    - Apresentação executiva (até 6 slides)
