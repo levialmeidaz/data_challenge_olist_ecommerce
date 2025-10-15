@@ -150,6 +150,15 @@ table orders
 
 		annotation UnderlyingDateTimeDataType = Date
 
+	column 'esta na order_itens' =
+			
+			COUNTROWS(FILTER(order_items, order_items[order_id] = orders[order_id]))
+		formatString: 0
+		lineageTag: fd50f6e2-988c-4f9d-9ef5-345c656877c4
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	partition orders = m
 		mode: import
 		source = ```

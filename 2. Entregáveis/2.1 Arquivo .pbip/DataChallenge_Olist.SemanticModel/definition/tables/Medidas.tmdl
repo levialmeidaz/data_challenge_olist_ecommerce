@@ -2,10 +2,11 @@ table Medidas
 	lineageTag: 984a75ac-48db-4ca0-9198-8fc8f2400a4e
 
 	measure 'Faturamento Total' = SUMX(order_items, order_items[price] + order_items[freight_value])
+		formatString: "R$"\ #,0;-"R$"\ #,0;"R$"\ #,0
 		displayFolder: 1. Comercial
 		lineageTag: 87a1afea-7255-441c-a758-f5c67f5dc2a5
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
 	measure 'Pedidos Realizados' = DISTINCTCOUNT(orders[order_id])
 		formatString: 0
@@ -29,10 +30,11 @@ table Medidas
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Frete Total' = SUM(order_items[freight_value])
+		formatString: "R$"\ #,0;-"R$"\ #,0;"R$"\ #,0
 		displayFolder: 1. Comercial
 		lineageTag: fdc51476-32f5-496e-834e-089b1020b734
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
 	measure '% Frete' = DIVIDE([Frete Total], [Faturamento Total])
 		formatString: 0.00%;-0.00%;0.00%
@@ -40,10 +42,11 @@ table Medidas
 		lineageTag: dff55a3a-9e61-4963-b653-d6888e93ae8e
 
 	measure 'Ticket Médio' = DIVIDE([Faturamento Total], [Pedidos Realizados])
+		formatString: "R$"\ #,0;-"R$"\ #,0;"R$"\ #,0
 		displayFolder: 1. Comercial
 		lineageTag: b27bec55-7ca6-4a9f-9618-9480ac098738
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
 	measure 'Pedidos no Prazo' =
 			
@@ -132,6 +135,37 @@ table Medidas
 		formatString: 0
 		displayFolder: 3. Clientes e Satisfação
 		lineageTag: 29f43d24-688d-4319-b8bd-9f27084f9445
+
+	measure 'Leads Qualificados' =
+			
+			DISTINCTCOUNT(lead_qualified[mql_id])
+		formatString: 0
+		displayFolder: 1. Comercial
+		lineageTag: 2e25302b-4b0d-40ee-952a-489592d442a4
+
+	measure 'Leads Fechados' =
+			
+			DISTINCTCOUNT(leads_closed[mql_id])
+		formatString: 0
+		displayFolder: 1. Comercial
+		lineageTag: 2db4241f-9c92-4af1-bf42-a804e55a7e4e
+
+	measure '% Taxa Conversão Leads' =
+			
+			DIVIDE([Leads Fechados], [Leads Qualificados])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 1. Comercial
+		lineageTag: cad6f0e1-18b9-49be-a5ef-275f578a6f92
+
+	measure 'Pedidos Realizados (Vend)' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(orders[order_id]),
+			    CROSSFILTER(order_items[order_id], orders[order_id], BOTH)
+			)
+		formatString: 0
+		displayFolder: 1. Comercial
+		lineageTag: fe37cb07-b86f-4495-9db2-7b4df4891102
 
 	partition Medidas = m
 		mode: import

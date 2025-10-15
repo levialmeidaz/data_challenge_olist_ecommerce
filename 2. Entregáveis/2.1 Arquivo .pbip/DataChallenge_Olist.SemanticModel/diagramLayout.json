@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 551.726616800604,
+        "x": 414.72272533789516,
         "y": 0
       },
       "nodes": [
@@ -24,8 +24,8 @@
         },
         {
           "location": {
-            "x": 744.97873545015,
-            "y": 278.24390247399424
+            "x": 812.92308483789043,
+            "y": 252.96228409716059
           },
           "nodeIndex": "order_items",
           "nodeLineageTag": "5c3ede55-5b06-4a7e-a873-b186f3f66546",
@@ -93,8 +93,8 @@
         },
         {
           "location": {
-            "x": 1132.2244862467921,
-            "y": 268.74770293429322
+            "x": 1155.9260034750737,
+            "y": 284.54871441981419
           },
           "nodeIndex": "sellers",
           "nodeLineageTag": "a7b9434a-e12c-4eab-8bba-43ebdbfb6429",
@@ -119,8 +119,8 @@
         },
         {
           "location": {
-            "x": 1891.2661413078067,
-            "y": 308.52418276033131
+            "x": 1989.1812852415999,
+            "y": 303.7395053778103
           },
           "nodeIndex": "lead_qualified",
           "nodeLineageTag": "bfd5c309-9e73-4f44-998c-be0866064ed4",
@@ -188,7 +188,7 @@
         }
       ],
       "name": "Todas as tabelas",
-      "zoomValue": 63.28708772323408,
+      "zoomValue": 50.346892102823183,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

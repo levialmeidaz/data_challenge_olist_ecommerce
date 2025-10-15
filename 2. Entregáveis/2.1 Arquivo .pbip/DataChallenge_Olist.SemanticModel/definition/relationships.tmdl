@@ -28,11 +28,6 @@ relationship 998c16d3-4e74-49e2-b0de-ca3751b12c66
 	fromColumn: order_reviews.review_answer_timestamp
 	toColumn: LocalDateTable_2f930451-47be-4813-bb38-2e8929510509.Date
 
-relationship 68350f7d-f941-4055-9236-6c9c3a87bcd4
-	joinOnDateBehavior: datePartOnly
-	fromColumn: lead_qualified.first_contact_date
-	toColumn: LocalDateTable_53c42660-de03-4b0a-8c33-5f6aa690a143.Date
-
 relationship bc8a0203-6e69-408c-b78e-86448b1b9044
 	joinOnDateBehavior: datePartOnly
 	fromColumn: dCalendario.Datas
@@ -66,10 +61,6 @@ relationship b01f08c2-ac1d-4a45-86a9-3a240356d79b
 	joinOnDateBehavior: datePartOnly
 	fromColumn: order_items.shipping_limit_date
 	toColumn: LocalDateTable_442fdf23-c2be-4168-8694-72c6a665f003.Date
-
-relationship d8a1bee8-de59-665f-b7ef-182ff8940882
-	fromColumn: leads_closed.mql_id
-	toColumn: lead_qualified.mql_id
 
 relationship 04520d04-37bb-0156-07d4-b24a263ea514
 	fromColumn: leads_closed.seller_id
@@ -115,5 +106,13 @@ relationship bb246fb9-cbcb-3ca8-17e9-59939e3f3c37
 relationship e8266bbf-8346-e783-8ee3-4363e4aba72e
 	isActive: false
 	fromColumn: orders.order_estimated_delivery_date
+	toColumn: dCalendario.Datas
+
+relationship 0c2a8731-3176-15ae-d4af-5741df941f32
+	fromColumn: leads_closed.mql_id
+	toColumn: lead_qualified.mql_id
+
+relationship 5d7b7a02-e1e8-da2a-b22d-e00d9ee83a3f
+	fromColumn: lead_qualified.first_contact_date
 	toColumn: dCalendario.Datas
 
