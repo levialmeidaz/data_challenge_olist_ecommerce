@@ -32,6 +32,11 @@ table orders
 		summarizeBy: none
 		sourceColumn: order_purchase_timestamp
 
+		variation Variation
+			isDefault
+			relationship: 4e78c4c3-3591-4f69-9736-e0bdb264a110
+			defaultHierarchy: LocalDateTable_9d32deda-48ef-44c1-a9c2-104cf7f70e6e.'Hierarquia de datas'
+
 		annotation SummarizationSetBy = Automatic
 
 	column order_approved_at_timestamp
@@ -92,15 +97,10 @@ table orders
 
 	column order_purchase_date
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		lineageTag: 0495b72d-4f96-490c-a61a-e527cc1f303e
 		summarizeBy: none
 		sourceColumn: order_purchase_date
-
-		variation Variation
-			isDefault
-			relationship: 891f8edf-0395-4562-a1d5-320fbb73bf1e
-			defaultHierarchy: LocalDateTable_2042e1ac-4791-4b7f-9811-60208f4e55dd.'Hierarquia de datas'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -108,15 +108,10 @@ table orders
 
 	column order_approved_at_date
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		lineageTag: 3db239af-bcde-428e-ab9a-73bdbc3c7482
 		summarizeBy: none
 		sourceColumn: order_approved_at_date
-
-		variation Variation
-			isDefault
-			relationship: 2d6536aa-16bd-4538-a4b5-09a445e9e49d
-			defaultHierarchy: LocalDateTable_562e4369-35fd-454d-8ff0-6d2fd6009371.'Hierarquia de datas'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -124,15 +119,10 @@ table orders
 
 	column order_delivered_carrier_date
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		lineageTag: 6bae8db5-4415-4144-8efb-ac837fc6f6f4
 		summarizeBy: none
 		sourceColumn: order_delivered_carrier_date
-
-		variation Variation
-			isDefault
-			relationship: c475d81b-f8cf-47a8-9f95-f219947240d0
-			defaultHierarchy: LocalDateTable_30253006-cdf0-4ac6-ad18-59d65e4b2cb2.'Hierarquia de datas'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -140,15 +130,10 @@ table orders
 
 	column order_delivered_customer_date
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		lineageTag: b3605c02-8663-46f1-907b-e16aa1dc1363
 		summarizeBy: none
 		sourceColumn: order_delivered_customer_date
-
-		variation Variation
-			isDefault
-			relationship: 8d6aa03f-734a-48a0-9e0c-5e3a553381b8
-			defaultHierarchy: LocalDateTable_cd802a6c-ca9d-43a8-9ecf-ebb9dccbf12b.'Hierarquia de datas'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -156,15 +141,10 @@ table orders
 
 	column order_estimated_delivery_date
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		lineageTag: e18bfc2c-1695-4846-9c0f-013cdb1a4024
 		summarizeBy: none
 		sourceColumn: order_estimated_delivery_date
-
-		variation Variation
-			isDefault
-			relationship: d856ddd0-0227-46e2-8128-03bd2351b7b6
-			defaultHierarchy: LocalDateTable_0eecdb1e-4c24-4c8c-a4bf-4b48f8d402fc.'Hierarquia de datas'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -174,7 +154,7 @@ table orders
 		mode: import
 		source = ```
 				let
-				    Fonte = Csv.Document(File.Contents("C:\Users\levia\Desktop\Profissional\data_challenge_olist_ecommerce\3. Base de Dados\orders.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Fonte = Csv.Document(File.Contents("C:\Users\atend\OneDrive\Área de Trabalho\git_jb\data_challenge_olist_ecommerce\3. Base de Dados\orders.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"order_purchase_timestamp", type datetime}, {"order_approved_at", type datetime}, {"order_delivered_carrier_date", type datetime}, {"order_delivered_customer_date", type datetime}, {"order_estimated_delivery_date", type datetime}}),
 				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{

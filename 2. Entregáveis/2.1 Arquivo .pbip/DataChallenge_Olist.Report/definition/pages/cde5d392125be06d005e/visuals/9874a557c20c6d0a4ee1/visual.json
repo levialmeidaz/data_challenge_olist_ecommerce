@@ -1,12 +1,12 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "3ebb884e0465456239c4",
+  "name": "9874a557c20c6d0a4ee1",
   "position": {
-    "x": 27.487684729064039,
-    "y": 42.5615763546798,
+    "x": 31.286759651079304,
+    "y": 8.7602927023022055,
     "z": 0,
-    "height": 137.4384236453202,
-    "width": 386.60098522167488
+    "height": 136.41027207870576,
+    "width": 331.63965230144061
   },
   "visual": {
     "visualType": "card",
@@ -22,11 +22,11 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Faturamento Total"
+                  "Property": "Pedidos Realizados"
                 }
               },
-              "queryRef": "Medidas.faturamento",
-              "nativeQueryRef": "faturamento"
+              "queryRef": "Medidas.Pedidos Realizados",
+              "nativeQueryRef": "Pedidos Realizados"
             }
           ]
         }
@@ -41,7 +41,7 @@
                     "Entity": "Medidas"
                   }
                 },
-                "Property": "Faturamento Total"
+                "Property": "Pedidos Realizados"
               }
             },
             "direction": "Descending"

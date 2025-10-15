@@ -3,7 +3,7 @@ table dCalendario
 
 	column Datas
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		lineageTag: 5d8403a4-d223-4e32-a4d2-947042ab09c1
 		summarizeBy: none
 		sourceColumn: Datas

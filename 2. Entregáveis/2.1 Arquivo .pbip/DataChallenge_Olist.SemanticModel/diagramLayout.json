@@ -4,13 +4,13 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 0,
+        "x": 551.726616800604,
         "y": 0
       },
       "nodes": [
         {
           "location": {
-            "x": 111.15211659706145,
+            "x": 43.832798597061455,
             "y": 0
           },
           "nodeIndex": "customers",
@@ -19,13 +19,13 @@
             "height": 104,
             "width": 169
           },
-          "zIndex": 1,
+          "zIndex": 2,
           "expandedHeight": 251.96764303571058
         },
         {
           "location": {
-            "x": 743.20717445015,
-            "y": 393.39536747399421
+            "x": 744.97873545015,
+            "y": 278.24390247399424
           },
           "nodeIndex": "order_items",
           "nodeLineageTag": "5c3ede55-5b06-4a7e-a873-b186f3f66546",
@@ -33,27 +33,27 @@
             "height": 176,
             "width": 183
           },
-          "zIndex": 2,
+          "zIndex": 3,
           "expandedHeight": 259
         },
         {
           "location": {
-            "x": 35.34126966013703,
-            "y": 571.94443810478629
+            "x": 14.082537660137035,
+            "y": 408.96082610478635
           },
           "nodeIndex": "order_payments",
           "nodeLineageTag": "01afd1f6-4a1b-4d7d-b191-af0432e4fb10",
           "size": {
             "height": 104,
-            "width": 168
+            "width": 222.91839099999999
           },
-          "zIndex": 3,
+          "zIndex": 4,
           "expandedHeight": 211
         },
         {
           "location": {
-            "x": 394.97507077908375,
-            "y": 751.77533622120177
+            "x": 389.66038777908375,
+            "y": 657.88260322120175
           },
           "nodeIndex": "order_reviews",
           "nodeLineageTag": "316a026a-003c-48c1-9711-d919884c5c0c",
@@ -61,21 +61,21 @@
             "height": 152,
             "width": 201
           },
-          "zIndex": 4,
+          "zIndex": 5,
           "expandedHeight": 248
         },
         {
           "location": {
-            "x": 418.50278384197622,
-            "y": 366.64090333663432
+            "x": 416.73122284197621,
+            "y": 251.48943833663435
           },
           "nodeIndex": "orders",
           "nodeLineageTag": "5720d46d-27fe-4764-a775-2bc14689c5a2",
           "size": {
-            "height": 225,
-            "width": 157
+            "height": 279.98757901510817,
+            "width": 221.36424353720577
           },
-          "zIndex": 5
+          "zIndex": 13
         },
         {
           "location": {
@@ -93,8 +93,8 @@
         },
         {
           "location": {
-            "x": 1137.539169246792,
-            "y": 421.1019489342932
+            "x": 1132.2244862467921,
+            "y": 268.74770293429322
           },
           "nodeIndex": "sellers",
           "nodeLineageTag": "a7b9434a-e12c-4eab-8bba-43ebdbfb6429",
@@ -106,8 +106,8 @@
         },
         {
           "location": {
-            "x": 1137.4982642986236,
-            "y": 755.49896593457913
+            "x": 1128.6404592986237,
+            "y": 603.14471993457914
           },
           "nodeIndex": "geolocation",
           "nodeLineageTag": "6ac721b1-2c1f-4b77-8aef-a4440ea448c0",
@@ -119,8 +119,8 @@
         },
         {
           "location": {
-            "x": 1850.5202383078067,
-            "y": 411.27472076033132
+            "x": 1891.2661413078067,
+            "y": 308.52418276033131
           },
           "nodeIndex": "lead_qualified",
           "nodeLineageTag": "bfd5c309-9e73-4f44-998c-be0866064ed4",
@@ -133,8 +133,8 @@
         },
         {
           "location": {
-            "x": 1535.956139840099,
-            "y": 409.95482105989214
+            "x": 1528.8698958400989,
+            "y": 293.0317950598922
           },
           "nodeIndex": "leads_closed",
           "nodeLineageTag": "fbbb7d12-27bf-4471-9ede-a9467de5fc4a",
@@ -154,7 +154,7 @@
           "nodeLineageTag": "d2f35e3d-29aa-474c-8336-c05620f695d7",
           "size": {
             "height": 104,
-            "width": 234
+            "width": 349.15146499999992
           },
           "zIndex": 10,
           "expandedHeight": 173.25274675114795
@@ -184,11 +184,11 @@
             "height": 104,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
         }
       ],
       "name": "Todas as tabelas",
-      "zoomValue": 63.287087723234059,
+      "zoomValue": 63.28708772323408,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

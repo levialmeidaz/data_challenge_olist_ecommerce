@@ -1,12 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "3ebb884e0465456239c4",
+  "name": "0a58fdbc9515b96004e2",
   "position": {
-    "x": 27.487684729064039,
-    "y": 42.5615763546798,
-    "z": 0,
-    "height": 137.4384236453202,
-    "width": 386.60098522167488
+    "x": 874.77779984417737,
+    "y": 535.6293252264777,
+    "z": 5,
+    "height": 136.41027207870576,
+    "width": 331.63965230144061,
+    "tabOrder": 5
   },
   "visual": {
     "visualType": "card",
@@ -22,11 +23,11 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Faturamento Total"
+                  "Property": "% Frete"
                 }
               },
-              "queryRef": "Medidas.faturamento",
-              "nativeQueryRef": "faturamento"
+              "queryRef": "Medidas.Percentual Frete",
+              "nativeQueryRef": "% Frete"
             }
           ]
         }
@@ -41,7 +42,7 @@
                     "Entity": "Medidas"
                   }
                 },
-                "Property": "Faturamento Total"
+                "Property": "% Frete"
               }
             },
             "direction": "Descending"

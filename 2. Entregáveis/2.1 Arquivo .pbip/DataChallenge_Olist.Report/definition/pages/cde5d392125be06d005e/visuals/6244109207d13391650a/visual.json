@@ -1,12 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "3ebb884e0465456239c4",
+  "name": "6244109207d13391650a",
   "position": {
-    "x": 27.487684729064039,
-    "y": 42.5615763546798,
-    "z": 0,
-    "height": 137.4384236453202,
-    "width": 386.60098522167488
+    "x": 798.43810629554378,
+    "y": 10.011763088345377,
+    "z": 2,
+    "height": 136.41027207870576,
+    "width": 433.00875357093759,
+    "tabOrder": 2
   },
   "visual": {
     "visualType": "card",
@@ -26,7 +27,7 @@
                 }
               },
               "queryRef": "Medidas.faturamento",
-              "nativeQueryRef": "faturamento"
+              "nativeQueryRef": "Faturamento Total"
             }
           ]
         }

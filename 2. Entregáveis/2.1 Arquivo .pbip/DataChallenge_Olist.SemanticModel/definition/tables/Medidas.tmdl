@@ -1,23 +1,137 @@
 table Medidas
 	lineageTag: 984a75ac-48db-4ca0-9198-8fc8f2400a4e
 
-	measure faturamento = SUM(order_items[total_value])
+	measure 'Faturamento Total' = SUMX(order_items, order_items[price] + order_items[freight_value])
+		displayFolder: 1. Comercial
 		lineageTag: 87a1afea-7255-441c-a758-f5c67f5dc2a5
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure qtd_pedidos = COUNT(orders[order_id])
+	measure 'Pedidos Realizados' = DISTINCTCOUNT(orders[order_id])
 		formatString: 0
+		displayFolder: 1. Comercial
 		lineageTag: c29721b9-0b1b-40a5-a828-cd7097153245
 
-	measure qtd_entregues =
+	measure 'Pedidos Entregues' =
 			
 			CALCULATE(
-			    [qtd_pedidos],
+			    DISTINCTCOUNT(orders[order_id]),
 			    orders[order_status] = "delivered"
 			)
 		formatString: 0
+		displayFolder: 1. Comercial
 		lineageTag: 51f67d41-5742-4254-85fd-1d471e931b32
+
+	measure 'Faturamento Produtos' = SUM(order_items[price])
+		displayFolder: 1. Comercial
+		lineageTag: fc8f13eb-a6fb-43c5-8c69-b6a60946ecd0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Frete Total' = SUM(order_items[freight_value])
+		displayFolder: 1. Comercial
+		lineageTag: fdc51476-32f5-496e-834e-089b1020b734
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% Frete' = DIVIDE([Frete Total], [Faturamento Total])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 1. Comercial
+		lineageTag: dff55a3a-9e61-4963-b653-d6888e93ae8e
+
+	measure 'Ticket Médio' = DIVIDE([Faturamento Total], [Pedidos Realizados])
+		displayFolder: 1. Comercial
+		lineageTag: b27bec55-7ca6-4a9f-9618-9480ac098738
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pedidos no Prazo' =
+			
+			CALCULATE(
+			    [Pedidos Entregues],
+			    KEEPFILTERS(orders[order_delivered_customer_date] <= orders[order_estimated_delivery_date])
+			)
+		formatString: 0
+		displayFolder: 2. Logística
+		lineageTag: 890ddbf8-c1ba-4992-82b0-f7a7d1e88dff
+
+	measure 'Pedidos Atrasados' =
+			
+			CALCULATE(
+			    [Pedidos Entregues],
+			    KEEPFILTERS(orders[order_delivered_customer_date] > orders[order_estimated_delivery_date])
+			)
+		formatString: 0
+		displayFolder: 2. Logística
+		lineageTag: 9bd63b68-8003-4c50-8935-ea4bd8704a5d
+
+	measure 'OnTime Delivery' = DIVIDE([Pedidos no Prazo], [Pedidos Entregues])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 2. Logística
+		lineageTag: d1df50c5-bdca-4fde-acd0-0c7efd4e5b73
+
+	measure 'Lead Time (dias)' =
+			
+			AVERAGEX(
+			    FILTER(orders, NOT ISBLANK(orders[order_delivered_customer_date])),
+			    DATEDIFF(orders[order_approved_at_date], orders[order_delivered_customer_date], DAY)
+			)
+		displayFolder: 2. Logística
+		lineageTag: b4be0acc-1ec8-455b-9fd3-404c906547c5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Nota Média' = AVERAGE(order_reviews[review_score])
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 7abe6df1-0324-41ac-b4f4-747ced894c1e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Nota Média — No Prazo' =
+			
+			CALCULATE([Nota Média],
+			    KEEPFILTERS(orders[order_delivered_customer_date] <= orders[order_estimated_delivery_date])
+			)
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: bfbd4285-a263-41b9-8f2c-79d11397af6f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Nota Média — Atrasado' =
+			
+			CALCULATE([Nota Média],
+			    KEEPFILTERS(orders[order_delivered_customer_date] > orders[order_estimated_delivery_date])
+			)
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: e5dfe102-aff3-4d17-9e9d-7f98829c69b2
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pedidos por Cliente' =
+			
+			VAR cliente = SELECTEDVALUE(customers[customer_unique_id])
+			RETURN CALCULATE([Pedidos Realizados], ALLEXCEPT(customers, customers[customer_unique_id]))
+		formatString: 0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: da80e6b0-a166-464b-8b4a-ca975c7e98b2
+
+	measure 'Clientes Recorrentes' =
+			
+			COUNTROWS(FILTER(VALUES(customers[customer_unique_id]), [Pedidos por Cliente] >= 2))
+		formatString: 0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: bcaa32ca-005c-45ac-9b66-8775c3b89838
+
+	measure '% Clientes Recorrentes' = DIVIDE([Clientes Recorrentes], DISTINCTCOUNT(customers[customer_unique_id]))
+		displayFolder: 2. Logística
+		lineageTag: 53827a5c-7332-4fb1-8e41-8f2cc1dfee2d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Clientes Únicos' = DISTINCTCOUNT(customers[customer_id])
+		formatString: 0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 29f43d24-688d-4319-b8bd-9f27084f9445
 
 	partition Medidas = m
 		mode: import

@@ -1,12 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
-  "name": "3ebb884e0465456239c4",
+  "name": "5a6014d0ae4ea0058eea",
   "position": {
-    "x": 27.487684729064039,
-    "y": 42.5615763546798,
-    "z": 0,
-    "height": 137.4384236453202,
-    "width": 386.60098522167488
+    "x": 32.538230037122474,
+    "y": 178.96026520417362,
+    "z": 9,
+    "height": 136.41027207870576,
+    "width": 331.63965230144061,
+    "tabOrder": 9
   },
   "visual": {
     "visualType": "card",
@@ -22,11 +23,11 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Faturamento Total"
+                  "Property": "Lead Time (dias)"
                 }
               },
-              "queryRef": "Medidas.faturamento",
-              "nativeQueryRef": "faturamento"
+              "queryRef": "Medidas.Lead Time (dias)",
+              "nativeQueryRef": "Lead Time (dias)"
             }
           ]
         }
@@ -41,7 +42,7 @@
                     "Entity": "Medidas"
                   }
                 },
-                "Property": "Faturamento Total"
+                "Property": "Lead Time (dias)"
               }
             },
             "direction": "Descending"

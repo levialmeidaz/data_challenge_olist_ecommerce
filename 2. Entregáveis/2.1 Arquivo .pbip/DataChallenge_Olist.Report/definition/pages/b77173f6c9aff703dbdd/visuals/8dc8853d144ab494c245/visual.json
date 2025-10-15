@@ -23,11 +23,11 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "qtd_entregues"
+                  "Property": "Pedidos Entregues"
                 }
               },
               "queryRef": "Medidas.qtd_entregues",
-              "nativeQueryRef": "qtd_entregues"
+              "nativeQueryRef": "Pedidos Entregues"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "Medidas"
                   }
                 },
-                "Property": "qtd_entregues"
+                "Property": "Pedidos Entregues"
               }
             },
             "direction": "Descending"

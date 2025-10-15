@@ -23,11 +23,11 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "qtd_pedidos"
+                  "Property": "Pedidos Realizados"
                 }
               },
               "queryRef": "Medidas.qtd_pedidos",
-              "nativeQueryRef": "qtd_pedidos"
+              "nativeQueryRef": "Pedidos Realizados"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "Medidas"
                   }
                 },
-                "Property": "qtd_pedidos"
+                "Property": "Pedidos Realizados"
               }
             },
             "direction": "Descending"
