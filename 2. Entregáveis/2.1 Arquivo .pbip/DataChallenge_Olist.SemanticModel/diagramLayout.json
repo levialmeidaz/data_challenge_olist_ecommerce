@@ -4,14 +4,14 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 414.72272533789516,
+        "x": 71.875990509183566,
         "y": 0
       },
       "nodes": [
         {
           "location": {
-            "x": 43.832798597061455,
-            "y": 0
+            "x": 70.610128394600423,
+            "y": 156.43597934351715
           },
           "nodeIndex": "customers",
           "nodeLineageTag": "4c0cbaba-e389-4e8b-9030-6d983a02665b",
@@ -185,10 +185,24 @@
             "width": 234
           },
           "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 71.875990509183566,
+            "y": 0
+          },
+          "nodeIndex": "dEstados",
+          "nodeLineageTag": "40625fa6-c3fb-4b81-8cf5-f3262003beef",
+          "size": {
+            "height": 104,
+            "width": 169
+          },
+          "zIndex": 14,
+          "expandedHeight": 104
         }
       ],
       "name": "Todas as tabelas",
-      "zoomValue": 50.346892102823183,
+      "zoomValue": 70.955543900968934,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

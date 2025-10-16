@@ -6,7 +6,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["orders","order_items","order_payments","order_reviews","customers","sellers","products","geolocation","product_category_name_translation","lead_qualified","leads_closed","dCalendario","Medidas"]
+annotation PBI_QueryOrder = ["orders","order_items","order_payments","order_reviews","customers","sellers","products","geolocation","product_category_name_translation","lead_qualified","leads_closed","dCalendario","Medidas","dEstados"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -36,6 +36,7 @@ ref table LocalDateTable_442fdf23-c2be-4168-8694-72c6a665f003
 ref table LocalDateTable_76f1c771-1516-4124-b36a-219a8dee0f1c
 ref table Medidas
 ref table LocalDateTable_9d32deda-48ef-44c1-a9c2-104cf7f70e6e
+ref table dEstados
 
 ref cultureInfo pt-BR
 

@@ -1,0 +1,26 @@
+table dEstados
+	lineageTag: 40625fa6-c3fb-4b81-8cf5-f3262003beef
+
+	column State
+		dataType: string
+		lineageTag: 8bd69766-e13e-4311-a466-7cd267418a7a
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dEstados = m
+		mode: import
+		source =
+				let
+				    Fonte = customers,
+				    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"customer_state"}),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Duplicatas Removidas",{{"customer_state", "State"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

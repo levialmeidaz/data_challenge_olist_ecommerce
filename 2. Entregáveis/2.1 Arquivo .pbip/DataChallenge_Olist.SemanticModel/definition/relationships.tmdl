@@ -116,3 +116,7 @@ relationship 5d7b7a02-e1e8-da2a-b22d-e00d9ee83a3f
 	fromColumn: lead_qualified.first_contact_date
 	toColumn: dCalendario.Datas
 
+relationship AutoDetected_2ab67efc-9ba3-4a92-8e1e-c5516ff3827d
+	fromColumn: customers.customer_state
+	toColumn: dEstados.State
+

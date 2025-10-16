@@ -9,9 +9,11 @@ table Medidas
 		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
 
 	measure 'Pedidos Realizados' = DISTINCTCOUNT(orders[order_id])
-		formatString: 0
+		formatString: #,0
 		displayFolder: 1. Comercial
 		lineageTag: c29721b9-0b1b-40a5-a828-cd7097153245
+
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Pedidos Entregues' =
 			
@@ -19,9 +21,11 @@ table Medidas
 			    DISTINCTCOUNT(orders[order_id]),
 			    orders[order_status] = "delivered"
 			)
-		formatString: 0
+		formatString: #,0
 		displayFolder: 1. Comercial
 		lineageTag: 51f67d41-5742-4254-85fd-1d471e931b32
+
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Faturamento Produtos' = SUM(order_items[price])
 		displayFolder: 1. Comercial
@@ -54,7 +58,7 @@ table Medidas
 			    [Pedidos Entregues],
 			    KEEPFILTERS(orders[order_delivered_customer_date] <= orders[order_estimated_delivery_date])
 			)
-		formatString: 0
+		formatString: #,0
 		displayFolder: 2. Logística
 		lineageTag: 890ddbf8-c1ba-4992-82b0-f7a7d1e88dff
 
@@ -64,7 +68,7 @@ table Medidas
 			    [Pedidos Entregues],
 			    KEEPFILTERS(orders[order_delivered_customer_date] > orders[order_estimated_delivery_date])
 			)
-		formatString: 0
+		formatString: #,0
 		displayFolder: 2. Logística
 		lineageTag: 9bd63b68-8003-4c50-8935-ea4bd8704a5d
 
@@ -114,41 +118,45 @@ table Medidas
 			
 			VAR cliente = SELECTEDVALUE(customers[customer_unique_id])
 			RETURN CALCULATE([Pedidos Realizados], ALLEXCEPT(customers, customers[customer_unique_id]))
-		formatString: 0
+		formatString: #,0
 		displayFolder: 3. Clientes e Satisfação
 		lineageTag: da80e6b0-a166-464b-8b4a-ca975c7e98b2
 
 	measure 'Clientes Recorrentes' =
 			
 			COUNTROWS(FILTER(VALUES(customers[customer_unique_id]), [Pedidos por Cliente] >= 2))
-		formatString: 0
+		formatString: #,0
 		displayFolder: 3. Clientes e Satisfação
 		lineageTag: bcaa32ca-005c-45ac-9b66-8775c3b89838
 
 	measure '% Clientes Recorrentes' = DIVIDE([Clientes Recorrentes], DISTINCTCOUNT(customers[customer_unique_id]))
-		displayFolder: 2. Logística
+		displayFolder: 3. Clientes e Satisfação
 		lineageTag: 53827a5c-7332-4fb1-8e41-8f2cc1dfee2d
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	measure 'Clientes Únicos' = DISTINCTCOUNT(customers[customer_id])
-		formatString: 0
+		formatString: #,0
 		displayFolder: 3. Clientes e Satisfação
 		lineageTag: 29f43d24-688d-4319-b8bd-9f27084f9445
 
 	measure 'Leads Qualificados' =
 			
 			DISTINCTCOUNT(lead_qualified[mql_id])
-		formatString: 0
+		formatString: #,0
 		displayFolder: 1. Comercial
 		lineageTag: 2e25302b-4b0d-40ee-952a-489592d442a4
+
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Leads Fechados' =
 			
 			DISTINCTCOUNT(leads_closed[mql_id])
-		formatString: 0
+		formatString: #,0
 		displayFolder: 1. Comercial
 		lineageTag: 2db4241f-9c92-4af1-bf42-a804e55a7e4e
+
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure '% Taxa Conversão Leads' =
 			
@@ -163,14 +171,18 @@ table Medidas
 			    DISTINCTCOUNT(orders[order_id]),
 			    CROSSFILTER(order_items[order_id], orders[order_id], BOTH)
 			)
-		formatString: 0
+		formatString: #,0
 		displayFolder: 1. Comercial
 		lineageTag: fe37cb07-b86f-4495-9db2-7b4df4891102
 
+		annotation PBI_FormatHint = {"isDecimal":true}
+
 	measure 'Clientes Positivados' = CALCULATE(DISTINCTCOUNT(orders[customer_id]))
-		formatString: 0
+		formatString: #,0
 		displayFolder: 1. Comercial
 		lineageTag: 699df23e-58aa-4fcc-a1f2-7094d46b60ad
+
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Faturamento LY' =
 			
@@ -200,9 +212,11 @@ table Medidas
 			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
 			    )
 			)+0
-		formatString: 0
+		formatString: #,0
 		displayFolder: 1. Comercial
 		lineageTag: 0be76519-cb07-4ad2-999f-681b6ca3d1ee
+
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Faturamento YoY' =
 			
@@ -242,9 +256,11 @@ table Medidas
 			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
 			    )
 			)+0
-		formatString: 0
+		formatString: #,0
 		displayFolder: 1. Comercial
 		lineageTag: 82c32873-f6a7-4df2-b9bd-035741927546
+
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Pedidos Entregues YoY' =
 			

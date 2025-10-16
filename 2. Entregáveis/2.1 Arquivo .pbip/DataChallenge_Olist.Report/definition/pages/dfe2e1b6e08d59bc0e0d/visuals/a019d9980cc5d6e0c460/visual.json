@@ -1,15 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
   "name": "a019d9980cc5d6e0c460",
   "position": {
     "x": 116.97378277153558,
     "y": 234.90636704119851,
     "z": 4000,
     "height": 210.93632958801498,
-    "width": 729.64794007490639
+    "width": 729.64794007490639,
+    "tabOrder": 17000
   },
   "visual": {
-    "visualType": "columnChart",
+    "visualType": "areaChart",
     "query": {
       "queryState": {
         "Category": {
@@ -168,19 +169,16 @@
           }
         }
       ],
-      "error": [
+      "lineStyles": [
         {
           "properties": {
-            "enabled": {
+            "lineChartType": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "'smooth'"
                 }
               }
             }
-          },
-          "selector": {
-            "metadata": "Medidas.Faturamento Total"
           }
         }
       ]
