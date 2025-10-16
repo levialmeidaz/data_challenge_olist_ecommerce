@@ -77,11 +77,11 @@ table Medidas
 		displayFolder: 2. Logística
 		lineageTag: d1df50c5-bdca-4fde-acd0-0c7efd4e5b73
 
-	measure 'Lead Time (dias)' =
+	measure 'Lead Time' =
 			
 			AVERAGEX(
 			    FILTER(orders, NOT ISBLANK(orders[order_delivered_customer_date])),
-			    DATEDIFF(orders[order_approved_at_date], orders[order_delivered_customer_date], DAY)
+			    DATEDIFF(orders[order_purchase_date], orders[order_delivered_customer_date], DAY)
 			)
 		displayFolder: 2. Logística
 		lineageTag: b4be0acc-1ec8-455b-9fd3-404c906547c5
@@ -135,7 +135,7 @@ table Medidas
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure 'Clientes Únicos' = DISTINCTCOUNT(customers[customer_id])
+	measure 'Clientes Únicos' = DISTINCTCOUNT(orders[customer_id])
 		formatString: #,0
 		displayFolder: 3. Clientes e Satisfação
 		lineageTag: 29f43d24-688d-4319-b8bd-9f27084f9445
@@ -305,6 +305,157 @@ table Medidas
 			FORMAT([Ticket Médio YoY], "↑ 0.0%; ↓ 0.0%")
 		displayFolder: 1. Comercial
 		lineageTag: af04246c-b9da-47ad-a760-9d49305b9b99
+
+	measure '% Atraso' = DIVIDE([Pedidos Atrasados], [Pedidos Entregues])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 2. Logística
+		lineageTag: 6e55cb07-898c-4fc8-b2ee-1cba9f705136
+
+	measure 'Tempo de Aprovação' =
+			
+			AVERAGEX(
+			    FILTER(orders, NOT ISBLANK(orders[order_delivered_customer_date])),
+			    DATEDIFF(orders[order_purchase_date], orders[order_approved_at_date], DAY)
+			)
+		displayFolder: 2. Logística
+		lineageTag: 2cf01e6f-245d-49b9-b5a3-e076aa90078c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo de Faturamento' =
+			
+			AVERAGEX(
+			    FILTER(orders, NOT ISBLANK(orders[order_delivered_customer_date])),
+			    DATEDIFF(orders[order_approved_at_date], orders[order_delivered_carrier_date], DAY)
+			)
+		displayFolder: 2. Logística
+		lineageTag: 0c97ef51-7b4f-43c2-a746-0e26fe142764
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Tempo de Transporte' =
+			
+			AVERAGEX(
+			    FILTER(orders, NOT ISBLANK(orders[order_delivered_customer_date])),
+			    DATEDIFF(orders[order_delivered_carrier_date], orders[order_delivered_customer_date], DAY)
+			)
+		displayFolder: 2. Logística
+		lineageTag: b3603ea1-f59c-469c-95d8-9e5f1b1a8fdb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pedidos no Prazo LY' =
+			
+			VAR AnoAtual = SELECTEDVALUE(dCalendario[Ano])
+			RETURN
+			CALCULATE(
+			    [Pedidos no Prazo],
+			    FILTER(
+			        ALL(dCalendario),                -- remove o filtro de 2018
+			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
+			    )
+			)+0
+		formatString: 0
+		displayFolder: 2. Logística
+		lineageTag: 5e2c4274-4bf5-421b-b38a-f544d34c4bca
+
+	measure 'Pedidos Atrasados LY' =
+			
+			VAR AnoAtual = SELECTEDVALUE(dCalendario[Ano])
+			RETURN
+			CALCULATE(
+			    [Pedidos Atrasados],
+			    FILTER(
+			        ALL(dCalendario),                -- remove o filtro de 2018
+			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
+			    )
+			)+0
+		formatString: 0
+		displayFolder: 2. Logística
+		lineageTag: 8b15e9ff-069e-49ba-b7bc-3a56e62a7018
+
+	measure 'Lead Time LY' =
+			
+			VAR AnoAtual = SELECTEDVALUE(dCalendario[Ano])
+			RETURN
+			CALCULATE(
+			    [Lead Time],
+			    FILTER(
+			        ALL(dCalendario),                -- remove o filtro de 2018
+			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
+			    )
+			)+0
+		displayFolder: 2. Logística
+		lineageTag: 20cbf247-bd9e-451d-a0e4-afbb424c3b46
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'OnTime Delivery LY' =
+			
+			VAR AnoAtual = SELECTEDVALUE(dCalendario[Ano])
+			RETURN
+			CALCULATE(
+			    [OnTime Delivery],
+			    FILTER(
+			        ALL(dCalendario),                -- remove o filtro de 2018
+			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
+			    )
+			)+0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 2. Logística
+		lineageTag: 377bd044-270a-4ae0-a917-4c4e1c3edc87
+
+	measure 'Pedidos no Prazo YoY' =
+			
+			DIVIDE([Pedidos no Prazo], [Pedidos no Prazo LY]) - 1
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 2. Logística
+		lineageTag: 74335b54-b4b8-478c-940c-efb4dd96e04e
+
+	measure 'Pedidos Atrasados YoY' =
+			
+			DIVIDE([Pedidos Atrasados], [Pedidos Atrasados LY]) - 1
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 2. Logística
+		lineageTag: 472eb2a8-1b8e-4793-a126-0a9f9407ff90
+
+	measure 'Lead Time YoY' =
+			
+			DIVIDE([Lead Time], [Lead Time LY]) - 1
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 2. Logística
+		lineageTag: 5f3434e6-94c0-4ddc-8ba5-afa02807a167
+
+	measure 'OnTime Delivery YoY' =
+			
+			DIVIDE([OnTime Delivery], [OnTime Delivery LY]) - 1
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 2. Logística
+		lineageTag: 37afc33d-5bf7-419a-b15e-fa764fc6a2b8
+
+	measure 'Pedidos no Prazo YoY Texto' =
+			
+			FORMAT([Pedidos no Prazo YoY], "↑ 0.0%; ↓ 0.0%")
+		displayFolder: 2. Logística
+		lineageTag: 5b095ce1-22df-4cd9-842b-68a1ae56219b
+
+	measure 'Pedidos Atrasados YoY Texto' =
+			
+			FORMAT([Pedidos Atrasados YoY], "↑ 0.0%; ↓ 0.0%")
+		displayFolder: 2. Logística
+		lineageTag: 52bf4749-69ed-4c9c-8ae0-31786b8964d7
+
+	measure 'Lead Time YoY Texto' =
+			
+			FORMAT([Lead Time YoY], "↑ 0.0%; ↓ 0.0%")
+		displayFolder: 2. Logística
+		lineageTag: 4dbbf304-aadb-4664-bfa4-7669f7503a67
+
+	measure 'OnTime Delivery YoY Texto' =
+			
+			FORMAT([OnTime Delivery YoY], "↑ 0.0%; ↓ 0.0%")
+		displayFolder: 2. Logística
+		lineageTag: 2a6b5582-eab0-46c9-b054-476ff70a37e4
 
 	partition Medidas = m
 		mode: import

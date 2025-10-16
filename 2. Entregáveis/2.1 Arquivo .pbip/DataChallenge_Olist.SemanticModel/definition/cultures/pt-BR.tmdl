@@ -12313,7 +12313,7 @@ cultureInfo pt-BR
 			      "Definition": {
 			        "Binding": {
 			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "Lead Time (dias)"
+			          "ConceptualProperty": "Lead Time"
 			        }
 			      },
 			      "State": "Generated",

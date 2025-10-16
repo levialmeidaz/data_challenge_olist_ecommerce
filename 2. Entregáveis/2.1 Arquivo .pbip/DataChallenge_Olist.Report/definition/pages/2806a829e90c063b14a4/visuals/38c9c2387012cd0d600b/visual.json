@@ -7,7 +7,7 @@
     "z": 5000,
     "height": 48.18181818181818,
     "width": 150,
-    "tabOrder": 5000
+    "tabOrder": 4000
   },
   "visual": {
     "visualType": "slicer",
@@ -66,6 +66,11 @@
           }
         }
       ]
+    },
+    "syncGroup": {
+      "groupName": "Nome do Mês",
+      "fieldChanges": true,
+      "filterChanges": true
     },
     "drillFilterOtherVisuals": true
   }

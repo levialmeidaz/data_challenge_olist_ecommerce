@@ -4,7 +4,7 @@
     {
       "ordinal": 0,
       "scrollPosition": {
-        "x": 71.875990509183566,
+        "x": 0,
         "y": 0
       },
       "nodes": [
@@ -16,11 +16,10 @@
           "nodeIndex": "customers",
           "nodeLineageTag": "4c0cbaba-e389-4e8b-9030-6d983a02665b",
           "size": {
-            "height": 104,
+            "height": 251.96764303571058,
             "width": 169
           },
-          "zIndex": 2,
-          "expandedHeight": 251.96764303571058
+          "zIndex": 2
         },
         {
           "location": {
@@ -38,8 +37,8 @@
         },
         {
           "location": {
-            "x": 14.082537660137035,
-            "y": 408.96082610478635
+            "x": 18.310537101853711,
+            "y": 473.79015087777543
           },
           "nodeIndex": "order_payments",
           "nodeLineageTag": "01afd1f6-4a1b-4d7d-b191-af0432e4fb10",
