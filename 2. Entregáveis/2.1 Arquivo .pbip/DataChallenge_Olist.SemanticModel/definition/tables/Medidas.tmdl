@@ -167,6 +167,129 @@ table Medidas
 		displayFolder: 1. Comercial
 		lineageTag: fe37cb07-b86f-4495-9db2-7b4df4891102
 
+	measure 'Clientes Positivados' = CALCULATE(DISTINCTCOUNT(orders[customer_id]))
+		formatString: 0
+		displayFolder: 1. Comercial
+		lineageTag: 699df23e-58aa-4fcc-a1f2-7094d46b60ad
+
+	measure 'Faturamento LY' =
+			
+			VAR AnoAtual = SELECTEDVALUE(dCalendario[Ano])
+			RETURN
+			CALCULATE(
+			    [Faturamento Total],
+			    FILTER(
+			        ALL(dCalendario),                -- remove o filtro de 2018
+			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
+			    )
+			)+0
+		formatString: "R$"\ #,0;-"R$"\ #,0;"R$"\ #,0
+		displayFolder: 1. Comercial
+		lineageTag: 8c22a828-de3c-46b0-810f-c4eaa1a3421d
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Pedidos Realizados LY' =
+			
+			VAR AnoAtual = SELECTEDVALUE(dCalendario[Ano])
+			RETURN
+			CALCULATE(
+			    [Pedidos Realizados],
+			    FILTER(
+			        ALL(dCalendario),                -- remove o filtro de 2018
+			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
+			    )
+			)+0
+		formatString: 0
+		displayFolder: 1. Comercial
+		lineageTag: 0be76519-cb07-4ad2-999f-681b6ca3d1ee
+
+	measure 'Faturamento YoY' =
+			
+			DIVIDE([Faturamento Total], [Faturamento LY]) - 1
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 1. Comercial
+		lineageTag: 4ddfa0f8-ecd6-4dae-84f1-d8644900b4e7
+
+	measure 'Faturamento YoY Texto' =
+			
+			FORMAT([Faturamento YoY], "↑ 0.0%; ↓ 0.0%")
+		displayFolder: 1. Comercial
+		lineageTag: f4f322d7-aa05-4d70-b00f-433f36d2006e
+
+	measure 'Pedidos Realizados YoY' =
+			
+			DIVIDE([Pedidos Realizados], [Pedidos Realizados LY]) - 1
+		displayFolder: 1. Comercial
+		lineageTag: 41ce73da-34c6-4b69-917d-59a711a4f040
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pedidos Realizados YoY Texto' =
+			
+			FORMAT([Pedidos Realizados YoY], "↑ 0.0%; ↓ 0.0%")
+		displayFolder: 1. Comercial
+		lineageTag: 6af90079-da01-4f1f-bb24-eee9ee18b09b
+
+	measure 'Pedidos Entregues LY' =
+			
+			VAR AnoAtual = SELECTEDVALUE(dCalendario[Ano])
+			RETURN
+			CALCULATE(
+			    [Pedidos Entregues],
+			    FILTER(
+			        ALL(dCalendario),                -- remove o filtro de 2018
+			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
+			    )
+			)+0
+		formatString: 0
+		displayFolder: 1. Comercial
+		lineageTag: 82c32873-f6a7-4df2-b9bd-035741927546
+
+	measure 'Pedidos Entregues YoY' =
+			
+			DIVIDE([Pedidos Entregues], [Pedidos Entregues LY]) - 1
+		displayFolder: 1. Comercial
+		lineageTag: e8c74585-a415-422c-8790-7b3f37aa7859
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Pedidos Entregues YoY Texto' =
+			
+			FORMAT([Pedidos Entregues YoY], "↑ 0.0%; ↓ 0.0%")
+		displayFolder: 1. Comercial
+		lineageTag: fd88fc37-025f-49dc-9229-4e7050477afd
+
+	measure 'Ticket Médio LY' =
+			
+			VAR AnoAtual = SELECTEDVALUE(dCalendario[Ano])
+			RETURN
+			CALCULATE(
+			    [Ticket Médio],
+			    FILTER(
+			        ALL(dCalendario),                -- remove o filtro de 2018
+			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
+			    )
+			)+0
+		displayFolder: 1. Comercial
+		lineageTag: bc06fccf-1973-4426-b51a-a05a8ab534bc
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ticket Médio YoY' =
+			
+			DIVIDE([Ticket Médio], [Ticket Médio LY]) - 1
+		displayFolder: 1. Comercial
+		lineageTag: 00e776b2-9ed2-4d23-a722-8b575dcaebbf
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Ticket Médio YoY Texto' =
+			
+			FORMAT([Ticket Médio YoY], "↑ 0.0%; ↓ 0.0%")
+		displayFolder: 1. Comercial
+		lineageTag: af04246c-b9da-47ad-a760-9d49305b9b99
+
 	partition Medidas = m
 		mode: import
 		source =

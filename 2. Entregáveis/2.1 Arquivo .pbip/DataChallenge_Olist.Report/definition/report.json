@@ -65,14 +65,14 @@
       "type": "RegisteredResources",
       "items": [
         {
-          "name": "pg116924318547732198.svg",
-          "path": "pg116924318547732198.svg",
-          "type": "Image"
-        },
-        {
           "name": "Tema_Levi___Performance_Comerc28442097102070074.json",
           "path": "Tema_Levi___Performance_Comerc28442097102070074.json",
           "type": "CustomTheme"
+        },
+        {
+          "name": "pg127539428814083355.svg",
+          "path": "pg127539428814083355.svg",
+          "type": "Image"
         }
       ]
     }
@@ -80,9 +80,13 @@
   "settings": {
     "useStylableVisualContainerHeader": true,
     "exportDataMode": "AllowSummarized",
+    "defaultFilterActionIsDataFilter": true,
     "defaultDrillFilterOtherVisuals": true,
     "allowChangeFilterTypes": true,
     "useEnhancedTooltips": true,
-    "useDefaultAggregateDisplayName": true
+    "useDefaultAggregateDisplayName": true,
+    "queryLimitOption": "None",
+    "customMemoryLimit": "1048576",
+    "customTimeoutLimit": "225"
   }
 }
