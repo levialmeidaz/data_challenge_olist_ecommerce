@@ -1,0 +1,281 @@
+{
+  "name": "Tema Levi — Performance Comercial v3",
+  "dataColors": [
+    "#0A4EE4",
+    "#3B73FF",
+    "#7AA7FF",
+    "#AFC6FF",
+    "#001647",
+    "#335280",
+    "#6E8CB8",
+    "#97A6B1"
+  ],
+  "background": "#F3F7FA",
+  "foreground": "#001647",
+  "tableAccent": "#0A4EE4",
+  "accent": "#0A4EE4",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 100
+          }
+        ],
+        "title": [
+          {
+            "color": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ],
+        "legend": [
+          {
+            "titleColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ],
+        "labels": [
+          {
+            "color": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F3F7FA"
+              }
+            },
+            "transparency": 0
+          }
+        ]
+      }
+    },
+    "card": {
+      "*": {
+        "callout": [
+          {
+            "color": {
+              "solid": {
+                "color": "#0A4EE4"
+              }
+            }
+          }
+        ],
+        "categoryLabels": [
+          {
+            "color": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "multiRowCard": {
+      "*": {
+        "labels": [
+          {
+            "color": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ],
+        "dataLabels": [
+          {
+            "color": {
+              "solid": {
+                "color": "#0A4EE4"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "slicer": {
+      "*": {
+        "items": [
+          {
+            "color": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ],
+        "title": [
+          {
+            "color": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "barChart": {
+      "*": {
+        "categoryAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "columnChart": {
+      "*": {
+        "categoryAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "lineChart": {
+      "*": {
+        "categoryAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ],
+        "valueAxis": [
+          {
+            "labelColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            },
+            "titleColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "pieChart": {
+      "*": {
+        "legend": [
+          {
+            "titleColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ],
+        "labels": [
+          {
+            "color": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "values": [
+          {
+            "fontColor": {
+              "solid": {
+                "color": "#001647"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

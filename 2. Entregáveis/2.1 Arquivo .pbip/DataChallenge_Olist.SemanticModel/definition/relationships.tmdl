@@ -28,11 +28,6 @@ relationship 998c16d3-4e74-49e2-b0de-ca3751b12c66
 	fromColumn: order_reviews.review_answer_timestamp
 	toColumn: LocalDateTable_2f930451-47be-4813-bb38-2e8929510509.Date
 
-relationship 68350f7d-f941-4055-9236-6c9c3a87bcd4
-	joinOnDateBehavior: datePartOnly
-	fromColumn: lead_qualified.first_contact_date
-	toColumn: LocalDateTable_53c42660-de03-4b0a-8c33-5f6aa690a143.Date
-
 relationship bc8a0203-6e69-408c-b78e-86448b1b9044
 	joinOnDateBehavior: datePartOnly
 	fromColumn: dCalendario.Datas
@@ -46,17 +41,9 @@ relationship 70e54934-6b55-2696-9841-6fa95109754b
 	fromColumn: order_items.order_id
 	toColumn: orders.order_id
 
-relationship 89f13865-0eae-3d6b-d499-d09ee7dd6542
-	fromColumn: order_reviews.order_id
-	toColumn: orders.order_id
-
 relationship a2c26401-f0ae-4e0a-acbd-2458c5fc57cb
 	fromColumn: orders.customer_id
 	toColumn: customers.customer_id
-
-relationship 0f60f00f-d794-2826-573a-a85d103878a8
-	fromColumn: orders.order_purchase_timestamp
-	toColumn: dCalendario.Datas
 
 relationship a6cc4c57-460d-0d79-21dc-aa61d9d90c93
 	fromColumn: order_items.product_id
@@ -71,10 +58,6 @@ relationship b01f08c2-ac1d-4a45-86a9-3a240356d79b
 	fromColumn: order_items.shipping_limit_date
 	toColumn: LocalDateTable_442fdf23-c2be-4168-8694-72c6a665f003.Date
 
-relationship d8a1bee8-de59-665f-b7ef-182ff8940882
-	fromColumn: leads_closed.mql_id
-	toColumn: lead_qualified.mql_id
-
 relationship 04520d04-37bb-0156-07d4-b24a263ea514
 	fromColumn: leads_closed.seller_id
 	toColumn: sellers.seller_id
@@ -88,32 +71,52 @@ relationship 4a1491a9-3a09-4d57-826c-0e43b30b2e22
 	fromColumn: order_reviews.review_creation_date
 	toColumn: LocalDateTable_76f1c771-1516-4124-b36a-219a8dee0f1c.Date
 
-relationship 891f8edf-0395-4562-a1d5-320fbb73bf1e
-	joinOnDateBehavior: datePartOnly
-	fromColumn: orders.order_purchase_date
-	toColumn: LocalDateTable_2042e1ac-4791-4b7f-9811-60208f4e55dd.Date
-
-relationship 2d6536aa-16bd-4538-a4b5-09a445e9e49d
-	joinOnDateBehavior: datePartOnly
-	fromColumn: orders.order_approved_at_date
-	toColumn: LocalDateTable_562e4369-35fd-454d-8ff0-6d2fd6009371.Date
-
-relationship c475d81b-f8cf-47a8-9f95-f219947240d0
-	joinOnDateBehavior: datePartOnly
-	fromColumn: orders.order_delivered_carrier_date
-	toColumn: LocalDateTable_30253006-cdf0-4ac6-ad18-59d65e4b2cb2.Date
-
-relationship 8d6aa03f-734a-48a0-9e0c-5e3a553381b8
-	joinOnDateBehavior: datePartOnly
-	fromColumn: orders.order_delivered_customer_date
-	toColumn: LocalDateTable_cd802a6c-ca9d-43a8-9ecf-ebb9dccbf12b.Date
-
-relationship d856ddd0-0227-46e2-8128-03bd2351b7b6
-	joinOnDateBehavior: datePartOnly
-	fromColumn: orders.order_estimated_delivery_date
-	toColumn: LocalDateTable_0eecdb1e-4c24-4c8c-a4bf-4b48f8d402fc.Date
-
 relationship 5ec40e58-d367-8ee4-a91e-14c88d4d41ea
 	fromColumn: sellers.seller_zip_code_prefix
 	toColumn: geolocation.geolocation_zip_code_prefix
+
+relationship 4e78c4c3-3591-4f69-9736-e0bdb264a110
+	joinOnDateBehavior: datePartOnly
+	fromColumn: orders.order_purchase_timestamp
+	toColumn: LocalDateTable_9d32deda-48ef-44c1-a9c2-104cf7f70e6e.Date
+
+relationship 3c5fda2e-1ea4-f7d0-4ba6-93fb43c81f35
+	fromColumn: orders.order_purchase_date
+	toColumn: dCalendario.Datas
+
+relationship 4a4864b0-fca4-e163-c274-b4a2c48e4f6b
+	isActive: false
+	fromColumn: orders.order_approved_at_date
+	toColumn: dCalendario.Datas
+
+relationship f68ca180-182c-cf30-94d8-82e4165c5224
+	isActive: false
+	fromColumn: orders.order_delivered_carrier_date
+	toColumn: dCalendario.Datas
+
+relationship bb246fb9-cbcb-3ca8-17e9-59939e3f3c37
+	isActive: false
+	fromColumn: orders.order_delivered_customer_date
+	toColumn: dCalendario.Datas
+
+relationship e8266bbf-8346-e783-8ee3-4363e4aba72e
+	isActive: false
+	fromColumn: orders.order_estimated_delivery_date
+	toColumn: dCalendario.Datas
+
+relationship 0c2a8731-3176-15ae-d4af-5741df941f32
+	fromColumn: leads_closed.mql_id
+	toColumn: lead_qualified.mql_id
+
+relationship 5d7b7a02-e1e8-da2a-b22d-e00d9ee83a3f
+	fromColumn: lead_qualified.first_contact_date
+	toColumn: dCalendario.Datas
+
+relationship AutoDetected_2ab67efc-9ba3-4a92-8e1e-c5516ff3827d
+	fromColumn: customers.customer_state
+	toColumn: dEstados.State
+
+relationship 40e25737-7294-d1be-b4fc-81eebcc64da9
+	fromColumn: order_reviews.order_id
+	toColumn: orders.order_id
 

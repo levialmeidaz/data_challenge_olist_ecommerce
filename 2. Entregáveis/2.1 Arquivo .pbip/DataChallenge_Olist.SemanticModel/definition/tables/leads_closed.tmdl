@@ -127,7 +127,7 @@ table leads_closed
 		mode: import
 		source =
 				let
-				    Fonte = Csv.Document(File.Contents("C:\Users\levia\Desktop\Profissional\data_challenge_olist_ecommerce\3. Base de Dados\leads_closed.csv"),[Delimiter=",", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Fonte = Csv.Document(File.Contents("C:\Users\atend\OneDrive\Área de Trabalho\git_jb\data_challenge_olist_ecommerce\3. Base de Dados\leads_closed.csv"),[Delimiter=",", Columns=14, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"won_date", type datetime}, {"declared_product_catalog_size", Int64.Type}, {"declared_monthly_revenue", Int64.Type}, {"has_gtin", Int64.Type}, {"has_company", Int64.Type}})
 				in

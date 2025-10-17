@@ -1,0 +1,58 @@
+table FaixasPedidos
+	lineageTag: 3c971e11-8225-4610-8e6f-d590c1bdf5dd
+
+	column Faixa
+		lineageTag: 0ab9dcdd-00b3-41b2-a3aa-5c3ccf389516
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Faixa]
+		sortByColumn: Sort
+
+		annotation SummarizationSetBy = Automatic
+
+	column Min
+		formatString: 0
+		lineageTag: dea14c67-0977-4cb5-844f-e5c66f4e0824
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Min]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Max
+		formatString: 0
+		lineageTag: 7f77189a-63cd-46bd-b57a-27fc0c9741c1
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Max]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		formatString: 0
+		lineageTag: 3d42cb26-373a-4dea-9313-d0d703902b79
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Sort]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FaixasPedidos = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "Faixa", STRING, "Min", INTEGER, "Max", INTEGER, "Sort", INTEGER,
+				    {
+				        {"1", 1, 1, 1},
+				        {"2", 2, 2, 2},
+				        {"3", 3, 3, 3},
+				        {"4", 4, 4, 4},
+				        {"5+", 5, 100000, 5}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = 575a7697c8214b869c9ebf38dfa12b30
+

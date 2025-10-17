@@ -11,15 +11,10 @@ table lead_qualified
 
 	column first_contact_date
 		dataType: dateTime
-		formatString: Long Date
+		formatString: Short Date
 		lineageTag: 8471dbe4-d912-4fe2-ad8d-823c01830f3f
 		summarizeBy: none
 		sourceColumn: first_contact_date
-
-		variation Variation
-			isDefault
-			relationship: 68350f7d-f941-4055-9236-6c9c3a87bcd4
-			defaultHierarchy: LocalDateTable_53c42660-de03-4b0a-8c33-5f6aa690a143.'Hierarquia de datas'
 
 		annotation SummarizationSetBy = Automatic
 
@@ -41,11 +36,18 @@ table lead_qualified
 
 		annotation SummarizationSetBy = Automatic
 
+	column closed? = COUNTROWS(FILTER(leads_closed, lead_qualified[mql_id] = leads_closed[mql_id]))
+		formatString: 0
+		lineageTag: 4a53273a-96ec-4d59-8908-0d063edaf71d
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	partition lead_qualified = m
 		mode: import
 		source =
 				let
-				    Fonte = Csv.Document(File.Contents("C:\Users\levia\Desktop\Profissional\data_challenge_olist_ecommerce\3. Base de Dados\lead_qualified.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Fonte = Csv.Document(File.Contents("C:\Users\atend\OneDrive\Área de Trabalho\git_jb\data_challenge_olist_ecommerce\3. Base de Dados\lead_qualified.csv"),[Delimiter=",", Columns=4, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"first_contact_date", type date}})
 				in

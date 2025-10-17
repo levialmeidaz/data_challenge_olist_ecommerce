@@ -6,7 +6,7 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["orders","order_items","order_payments","order_reviews","customers","sellers","products","geolocation","product_category_name_translation","lead_qualified","leads_closed","dCalendario","Medidas"]
+annotation PBI_QueryOrder = ["orders","order_items","order_payments","order_reviews","customers","sellers","products","geolocation","product_category_name_translation","lead_qualified","leads_closed","dCalendario","Medidas","dEstados"]
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
@@ -30,17 +30,15 @@ ref table LocalDateTable_43103459-5fc2-4835-bd9d-14e62d1c2a94
 ref table LocalDateTable_333c3d49-c3ca-455a-91a0-50f591d6bbcb
 ref table LocalDateTable_1ef705b5-9b3d-45ca-a677-e3791ca43b54
 ref table LocalDateTable_2f930451-47be-4813-bb38-2e8929510509
-ref table LocalDateTable_53c42660-de03-4b0a-8c33-5f6aa690a143
 ref table dCalendario
 ref table LocalDateTable_efbb9e7e-ee19-4ccb-967c-ad8556d2fcc7
 ref table LocalDateTable_442fdf23-c2be-4168-8694-72c6a665f003
 ref table LocalDateTable_76f1c771-1516-4124-b36a-219a8dee0f1c
 ref table Medidas
-ref table LocalDateTable_2042e1ac-4791-4b7f-9811-60208f4e55dd
-ref table LocalDateTable_562e4369-35fd-454d-8ff0-6d2fd6009371
-ref table LocalDateTable_30253006-cdf0-4ac6-ad18-59d65e4b2cb2
-ref table LocalDateTable_cd802a6c-ca9d-43a8-9ecf-ebb9dccbf12b
-ref table LocalDateTable_0eecdb1e-4c24-4c8c-a4bf-4b48f8d402fc
+ref table LocalDateTable_9d32deda-48ef-44c1-a9c2-104cf7f70e6e
+ref table dEstados
+ref table FaixasPedidos
+ref table FaixasReviews
 
 ref cultureInfo pt-BR
 

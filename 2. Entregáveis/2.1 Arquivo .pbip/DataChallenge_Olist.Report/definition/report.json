@@ -9,6 +9,15 @@
         "page": "1.3.95"
       },
       "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "Tema_Levi___Performance_Comerc28442097102070074.json",
+      "reportVersionAtImport": {
+        "visual": "2.1.0",
+        "report": "2.1.0",
+        "page": "2.0.0"
+      },
+      "type": "RegisteredResources"
     }
   },
   "objects": {
@@ -50,14 +59,49 @@
           "type": "BaseTheme"
         }
       ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Tema_Levi___Performance_Comerc28442097102070074.json",
+          "path": "Tema_Levi___Performance_Comerc28442097102070074.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "home5622613628593189.svg",
+          "path": "home5622613628593189.svg",
+          "type": "Image"
+        },
+        {
+          "name": "pg107055123733882462.svg",
+          "path": "pg107055123733882462.svg",
+          "type": "Image"
+        },
+        {
+          "name": "pg204632013077239705.svg",
+          "path": "pg204632013077239705.svg",
+          "type": "Image"
+        },
+        {
+          "name": "pg35689407760114069.svg",
+          "path": "pg35689407760114069.svg",
+          "type": "Image"
+        }
+      ]
     }
   ],
   "settings": {
     "useStylableVisualContainerHeader": true,
     "exportDataMode": "AllowSummarized",
+    "defaultFilterActionIsDataFilter": true,
     "defaultDrillFilterOtherVisuals": true,
     "allowChangeFilterTypes": true,
     "useEnhancedTooltips": true,
-    "useDefaultAggregateDisplayName": true
+    "useDefaultAggregateDisplayName": true,
+    "queryLimitOption": "None",
+    "customMemoryLimit": "1048576",
+    "customTimeoutLimit": "225"
   }
 }

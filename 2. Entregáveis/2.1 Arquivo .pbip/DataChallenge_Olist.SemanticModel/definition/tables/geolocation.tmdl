@@ -30,7 +30,7 @@ table geolocation
 		mode: import
 		source =
 				let
-				    Fonte = Csv.Document(File.Contents("C:\Users\levia\Desktop\Profissional\data_challenge_olist_ecommerce\3. Base de Dados\geolocation.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    Fonte = Csv.Document(File.Contents("C:\Users\atend\OneDrive\Área de Trabalho\git_jb\data_challenge_olist_ecommerce\3. Base de Dados\geolocation.csv"),[Delimiter=",", Columns=5, Encoding=65001, QuoteStyle=QuoteStyle.None]),
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"geolocation_zip_code_prefix", Int64.Type}, {"geolocation_lat", type number}, {"geolocation_lng", type number}}),
 				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Tipo Alterado",{"geolocation_zip_code_prefix", "geolocation_city", "geolocation_state"}),

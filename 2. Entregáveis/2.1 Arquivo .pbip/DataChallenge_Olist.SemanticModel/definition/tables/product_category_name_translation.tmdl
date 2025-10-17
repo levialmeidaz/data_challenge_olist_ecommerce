@@ -21,7 +21,7 @@ table product_category_name_translation
 		mode: import
 		source =
 				let
-				    Fonte = Csv.Document(File.Contents("C:\Users\levia\Desktop\Profissional\data_challenge_olist_ecommerce\3. Base de Dados\product_category_name_translation.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Fonte = Csv.Document(File.Contents("C:\Users\atend\OneDrive\Área de Trabalho\git_jb\data_challenge_olist_ecommerce\3. Base de Dados\product_category_name_translation.csv"),[Delimiter=",", Columns=2, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true])
 				in
 				    #"Cabeçalhos Promovidos"
