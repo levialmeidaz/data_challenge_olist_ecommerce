@@ -116,29 +116,33 @@ table Medidas
 
 	measure 'Pedidos por Cliente' =
 			
-			VAR cliente = SELECTEDVALUE(customers[customer_unique_id])
-			RETURN CALCULATE([Pedidos Realizados], ALLEXCEPT(customers, customers[customer_unique_id]))
+			VAR cust = SELECTEDVALUE(Customers[customer_unique_id])
+			RETURN
+			CALCULATE(
+			    DISTINCTCOUNT(Orders[order_id]),
+			    KEEPFILTERS(Customers[customer_unique_id] = cust)
+			)
 		formatString: #,0
 		displayFolder: 3. Clientes e Satisfação
 		lineageTag: da80e6b0-a166-464b-8b4a-ca975c7e98b2
 
 	measure 'Clientes Recorrentes' =
 			
-			COUNTROWS(FILTER(VALUES(customers[customer_unique_id]), [Pedidos por Cliente] >= 2))
-		formatString: #,0
+			CALCULATE(
+			    DISTINCTCOUNT(orders[customer_unique_id]),
+			    FILTER(
+			        VALUES(orders[customer_unique_id]),
+			        CALCULATE(DISTINCTCOUNT(orders[order_id])) > 1
+			    )
+			)+0
+		formatString: 0
 		displayFolder: 3. Clientes e Satisfação
 		lineageTag: bcaa32ca-005c-45ac-9b66-8775c3b89838
 
-	measure '% Clientes Recorrentes' = DIVIDE([Clientes Recorrentes], DISTINCTCOUNT(customers[customer_unique_id]))
+	measure 'Clientes Recorrentes %' = DIVIDE([Clientes Recorrentes], [Clientes Ativos])
+		formatString: 0.00%;-0.00%;0.00%
 		displayFolder: 3. Clientes e Satisfação
 		lineageTag: 53827a5c-7332-4fb1-8e41-8f2cc1dfee2d
-
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
-
-	measure 'Clientes Únicos' = DISTINCTCOUNT(orders[customer_id])
-		formatString: #,0
-		displayFolder: 3. Clientes e Satisfação
-		lineageTag: 29f43d24-688d-4319-b8bd-9f27084f9445
 
 	measure 'Leads Qualificados' =
 			
@@ -351,8 +355,8 @@ table Medidas
 			CALCULATE(
 			    [Pedidos no Prazo],
 			    FILTER(
-			        ALL(dCalendario),                -- remove o filtro de 2018
-			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
+			        ALL(dCalendario),
+			        dCalendario[Ano] = AnoAtual - 1
 			    )
 			)+0
 		formatString: 0
@@ -366,8 +370,8 @@ table Medidas
 			CALCULATE(
 			    [Pedidos Atrasados],
 			    FILTER(
-			        ALL(dCalendario),                -- remove o filtro de 2018
-			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
+			        ALL(dCalendario),
+			        dCalendario[Ano] = AnoAtual - 1
 			    )
 			)+0
 		formatString: 0
@@ -381,8 +385,8 @@ table Medidas
 			CALCULATE(
 			    [Lead Time],
 			    FILTER(
-			        ALL(dCalendario),                -- remove o filtro de 2018
-			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
+			        ALL(dCalendario),
+			        dCalendario[Ano] = AnoAtual - 1
 			    )
 			)+0
 		displayFolder: 2. Logística
@@ -397,8 +401,8 @@ table Medidas
 			CALCULATE(
 			    [OnTime Delivery],
 			    FILTER(
-			        ALL(dCalendario),                -- remove o filtro de 2018
-			        dCalendario[Ano] = AnoAtual - 1  -- aplica o ano anterior
+			        ALL(dCalendario),
+			        dCalendario[Ano] = AnoAtual - 1
 			    )
 			)+0
 		formatString: 0.00%;-0.00%;0.00%
@@ -456,6 +460,264 @@ table Medidas
 			FORMAT([OnTime Delivery YoY], "↑ 0.0%; ↓ 0.0%")
 		displayFolder: 2. Logística
 		lineageTag: 2a6b5582-eab0-46c9-b054-476ff70a37e4
+
+	measure 'Clientes Ativos' =
+			
+			DISTINCTCOUNT(orders[customer_unique_id])
+		formatString: #,0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 6c015ec7-f28e-4c12-ae34-fc0f9960b104
+
+	measure 'Clientes Ativos Período Anterior' =
+			
+			VAR HaMes =
+			    HASONEVALUE('dCalendario'[Ano Mês])
+			
+			VAR AnoAtual = SELECTEDVALUE('dCalendario'[Ano])
+			
+			RETURN
+			IF(
+			    HaMes,
+			    CALCULATE(
+			        [Clientes Ativos],
+			        DATEADD('dCalendario'[Datas], -1, MONTH)
+			    ),
+			    CALCULATE(
+			        [Clientes Ativos],
+			        FILTER(
+			            ALL('dCalendario'[Datas]),                     -- zera filtro de mês/dia
+			            YEAR('dCalendario'[Datas]) = AnoAtual - 1      -- ano anterior inteiro
+			        )
+			    )
+			)
+		formatString: 0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 272078a9-0141-4a0a-9492-f28424d9b949
+
+	measure 'Clientes Únicos' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(orders[customer_unique_id]),
+			    FILTER(
+			        VALUES(orders[customer_unique_id]),
+			        CALCULATE(DISTINCTCOUNT(orders[order_id])) = 1
+			    )
+			)
+		formatString: 0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 2c5a39db-2e3a-4266-ad74-8ecbb0e259a8
+
+	measure 'Clientes Retidos' = ```
+			
+			VAR HaMes = HASONEVALUE('dCalendario'[Ano Mês])
+			RETURN
+			IF(
+			    HaMes,
+			    /* --- contexto MÊS: mês atual vs mês anterior --- */
+			    VAR MaxData = MAX('dCalendario'[Datas])
+			    VAR ClientesPrev =
+			        CALCULATETABLE(
+			            VALUES(orders[customer_unique_id]),
+			            REMOVEFILTERS('dCalendario'),
+			            DATESINPERIOD('dCalendario'[Datas], EOMONTH(MaxData, -1), 1, MONTH)
+			        )
+			    VAR ClientesAtual =
+			        CALCULATETABLE(
+			            VALUES(orders[customer_unique_id]),
+			            REMOVEFILTERS('dCalendario'),
+			            DATESINPERIOD('dCalendario'[Datas], EOMONTH(MaxData, 0), 1, MONTH)
+			        )
+			    RETURN COUNTROWS(INTERSECT(ClientesPrev, ClientesAtual)),
+			    /* --- contexto ANO: ano atual vs ano anterior --- */
+			    VAR AnoAtual = SELECTEDVALUE('dCalendario'[Ano])
+			    VAR ClientesPrevY =
+			        CALCULATETABLE(
+			            VALUES(orders[customer_unique_id]),
+			            REMOVEFILTERS('dCalendario'),
+			            DATESBETWEEN('dCalendario'[Datas], DATE(AnoAtual-1,1,1), DATE(AnoAtual-1,12,31))
+			        )
+			    VAR ClientesAtualY =
+			        CALCULATETABLE(
+			            VALUES(orders[customer_unique_id]),
+			            REMOVEFILTERS('dCalendario'),
+			            DATESBETWEEN('dCalendario'[Datas], DATE(AnoAtual,1,1), DATE(AnoAtual,12,31))
+			        )
+			    RETURN COUNTROWS(INTERSECT(ClientesPrevY, ClientesAtualY))
+			)
+			
+			```
+		formatString: 0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 5ef1c6f8-b404-4ce8-8f9e-3fc3ebdb4eff
+
+	measure 'Churn Rate' =
+			
+			1 - DIVIDE([Clientes Retidos], [Clientes Ativos Período Anterior])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 23ddfd49-4604-41b6-ada8-1f2f4a42b45f
+
+	measure 'Clientes por Faixa' = ```
+			
+			VAR minK = SELECTEDVALUE(FaixasPedidos[Min])
+			VAR maxK = SELECTEDVALUE(FaixasPedidos[Max])
+			VAR T =
+			    ADDCOLUMNS(
+			        ALLSELECTED(Customers[customer_unique_id]),
+			        "n", CALCULATE(DISTINCTCOUNT(Orders[order_id]))
+			    )
+			RETURN
+			COUNTROWS(
+			    FILTER(
+			        T,
+			        VAR t = COALESCE([n], 0)
+			        RETURN t >= minK && t <= maxK
+			    )
+			)
+			
+			```
+		formatString: #,0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 4069669d-60b4-489f-ba60-333fbf934596
+
+	measure 'Quantidade Avaliações' = COUNT(order_reviews[review_id])
+		formatString: 0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 823d06b5-5fe7-4a5a-88ed-a05437745d7a
+
+	measure 'Total Avaliações Selecionadas' = ```
+			
+			COUNTROWS(ALLSELECTED(order_reviews))
+			
+			```
+		formatString: 0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 7e6a0e39-c062-4c0e-8051-7dfe156de59c
+
+	measure 'Avaliações por Nota (Faixa)' =
+			
+			VAR n = SELECTEDVALUE(FaixasReviews[Nota])
+			RETURN
+			CALCULATE(
+			    COUNTROWS(order_reviews),
+			    KEEPFILTERS(order_reviews[review_score] = n)
+			)
+		formatString: #,0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 5d0971fc-7b43-4620-91f4-00696fc617e0
+
+	measure 'Clientes Ativos LY' =
+			
+			VAR AnoAtual = SELECTEDVALUE(dCalendario[Ano])
+			RETURN
+			CALCULATE(
+			    [Clientes Ativos],
+			    FILTER(
+			        ALL(dCalendario),
+			        dCalendario[Ano] = AnoAtual - 1
+			    )
+			)+0
+		formatString: 0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 6356852d-2f2c-4386-a60f-388f2da8476b
+
+	measure 'Clientes Recorrentes % LY' =
+			
+			VAR AnoAtual = SELECTEDVALUE(dCalendario[Ano])
+			RETURN
+			CALCULATE(
+			    [Clientes Recorrentes %],
+			    FILTER(
+			        ALL(dCalendario),
+			        dCalendario[Ano] = AnoAtual - 1
+			    )
+			)+0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 502ee2b9-8d01-4c87-82f4-d544b19762a3
+
+	measure 'Churn Rate LY' =
+			
+			VAR AnoAtual = SELECTEDVALUE(dCalendario[Ano])
+			RETURN
+			CALCULATE(
+			    [Churn Rate],
+			    FILTER(
+			        ALL(dCalendario),
+			        dCalendario[Ano] = AnoAtual - 1
+			    )
+			)+0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 87921327-24f1-4a1b-af58-abfa8afb6c7c
+
+	measure 'Nota Média LY' =
+			
+			VAR AnoAtual = SELECTEDVALUE(dCalendario[Ano])
+			RETURN
+			CALCULATE(
+			    [Nota Média],
+			    FILTER(
+			        ALL(dCalendario),
+			        dCalendario[Ano] = AnoAtual - 1
+			    )
+			)+0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 45a3bf81-7b08-4895-b756-055fb1712d78
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Clientes Ativos YoY' =
+			
+			DIVIDE([Clientes Ativos], [Clientes Ativos LY]) - 1
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: deb06f86-42ec-4ca6-a585-91b1cdc405fd
+
+	measure 'Clientes Recorrentes % YoY' =
+			
+			[Clientes Recorrentes %] - [Clientes Recorrentes % LY]
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 5647376b-b0b3-4384-be42-d2787c8e738c
+
+	measure 'Churn Rate YoY' =
+			
+			[Churn Rate] - [Churn Rate LY]
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: a8491c79-1cf5-40fb-b7d5-15cba9c8ffea
+
+	measure 'Nota Média YoY' =
+			
+			DIVIDE([Nota Média], [Nota Média LY]) - 1
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: e8bac0ea-7935-4fca-8480-2a36225c438d
+
+	measure 'Clientes Ativos YoY Texto' =
+			
+			FORMAT([Clientes Ativos YoY], "↑ 0.0%; ↓ 0.0%")
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: cc281cfd-9c6a-4186-93d7-6b51a68fec71
+
+	measure 'Clientes Recorrentes % YoY Texto' =
+			
+			FORMAT([Clientes Recorrentes % YoY], "↑ 0.0%; ↓ 0.0%")
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 7bf9882a-2b87-4dd9-ba14-ca4dda99c755
+
+	measure 'Churn Rate YoY Texto' =
+			
+			FORMAT([Churn Rate YoY], "↑ 0.0%; ↓ 0.0%")
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 2af78abc-4913-4f89-b398-a7ae871f5e54
+
+	measure 'Nota Média YoY Texto' =
+			
+			FORMAT([Nota Média YoY], "↑ 0.0%; ↓ 0.0%")
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 69d4d920-8564-440d-a986-e23e02ec6355
 
 	partition Medidas = m
 		mode: import

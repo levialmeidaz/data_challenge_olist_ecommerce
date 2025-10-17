@@ -1,12 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
-  "name": "4cb5faf7bbe080027957",
+  "name": "1c57e5782943d9d66875",
   "position": {
-    "x": 116.97378277153558,
+    "x": 974.14232209737827,
     "y": 107.38576779026218,
-    "z": 0,
+    "z": 5000,
     "height": 42.187265917602993,
-    "width": 268.4644194756554
+    "width": 265.58801498127343,
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "card",
@@ -22,11 +23,11 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Clientes Únicos"
+                  "Property": "Nota Média"
                 }
               },
-              "queryRef": "Medidas.Clientes Únicos",
-              "nativeQueryRef": "Clientes Únicos"
+              "queryRef": "Medidas.Nota Média",
+              "nativeQueryRef": "Nota Média"
             }
           ]
         }
@@ -41,7 +42,7 @@
                     "Entity": "Medidas"
                   }
                 },
-                "Property": "Clientes Únicos"
+                "Property": "Nota Média"
               }
             },
             "direction": "Descending"
@@ -86,16 +87,9 @@
       ]
     },
     "visualContainerObjects": {
-      "title": [
+      "background": [
         {
           "properties": {
-            "titleWrap": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
             "show": {
               "expr": {
                 "Literal": {
@@ -103,17 +97,48 @@
                 }
               }
             },
-            "text": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Faturamento Total'"
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
                 }
               }
             },
-            "alignment": {
+            "transparency": {
               "expr": {
                 "Literal": {
-                  "Value": "'left'"
+                  "Value": "0D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "heading": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Normal'"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
                 }
               }
             },
@@ -128,17 +153,10 @@
                 }
               }
             },
-            "fontFamily": {
+            "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+                  "Value": "'left'"
                 }
               }
             },
@@ -149,43 +167,30 @@
                 }
               }
             },
-            "heading": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Normal'"
-                }
-              }
-            }
-          }
-        }
-      ],
-      "background": [
-        {
-          "properties": {
-            "show": {
+            "bold": {
               "expr": {
                 "Literal": {
                   "Value": "false"
                 }
               }
             },
-            "transparency": {
+            "fontFamily": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }
           }
         }
       ],
-      "border": [
+      "subTitle": [
         {
           "properties": {
-            "width": {
+            "show": {
               "expr": {
                 "Literal": {
-                  "Value": "1D"
+                  "Value": "false"
                 }
               }
             }
@@ -205,13 +210,13 @@
           }
         }
       ],
-      "subTitle": [
+      "border": [
         {
           "properties": {
-            "show": {
+            "width": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "1D"
                 }
               }
             }

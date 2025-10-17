@@ -150,12 +150,13 @@ table orders
 
 		annotation UnderlyingDateTimeDataType = Date
 
-	column 'esta na order_itens' =
+	column customer_unique_id =
 			
-			COUNTROWS(FILTER(order_items, order_items[order_id] = orders[order_id]))
-		formatString: 0
-		lineageTag: fd50f6e2-988c-4f9d-9ef5-345c656877c4
-		summarizeBy: sum
+			CALCULATE(
+			    MAX(customers[customer_unique_id]),
+			    FILTER(customers, customers[customer_id] = orders[customer_id]))
+		lineageTag: 600b3765-e71d-4202-93da-ba0ba8e2ae61
+		summarizeBy: none
 
 		annotation SummarizationSetBy = Automatic
 
@@ -163,7 +164,7 @@ table orders
 		mode: import
 		source = ```
 				let
-				    Fonte = Csv.Document(File.Contents("C:\Users\levia\Desktop\Profissional\data_challenge_olist_ecommerce\3. Base de Dados\orders.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
+				    Fonte = Csv.Document(File.Contents("C:\Users\atend\OneDrive\Área de Trabalho\git_jb\data_challenge_olist_ecommerce\3. Base de Dados\orders.csv"),[Delimiter=",", Columns=8, Encoding=1252, QuoteStyle=QuoteStyle.None]),
 				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
 				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"order_purchase_timestamp", type datetime}, {"order_approved_at", type datetime}, {"order_delivered_carrier_date", type datetime}, {"order_delivered_customer_date", type datetime}, {"order_estimated_delivery_date", type datetime}}),
 				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{

@@ -37,6 +37,8 @@ ref table LocalDateTable_76f1c771-1516-4124-b36a-219a8dee0f1c
 ref table Medidas
 ref table LocalDateTable_9d32deda-48ef-44c1-a9c2-104cf7f70e6e
 ref table dEstados
+ref table FaixasPedidos
+ref table FaixasReviews
 
 ref cultureInfo pt-BR
 

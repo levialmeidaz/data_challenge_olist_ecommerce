@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.3.0/schema.json",
-  "name": "5b6152a2c609044065aa",
+  "name": "da9a43f10026093606eb",
   "position": {
-    "x": 181.09629629629629,
-    "y": 251.25925925925927,
-    "z": 3,
-    "height": 41.718518518518522,
-    "width": 268.3259259259259,
-    "tabOrder": 3
+    "x": 403.65543071161051,
+    "y": 107.38576779026218,
+    "z": 4000,
+    "height": 42.187265917602993,
+    "width": 265.58801498127343,
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "card",
@@ -23,11 +23,11 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Clientes Recorrentes"
+                  "Property": "Clientes Recorrentes %"
                 }
               },
-              "queryRef": "Medidas.Clientes Recorrentes",
-              "nativeQueryRef": "Clientes Recorrentes"
+              "queryRef": "Medidas.% Clientes Recorrentes",
+              "nativeQueryRef": "Clientes Recorrentes %"
             }
           ]
         }
@@ -42,7 +42,7 @@
                     "Entity": "Medidas"
                   }
                 },
-                "Property": "Clientes Recorrentes"
+                "Property": "Clientes Recorrentes %"
               }
             },
             "direction": "Descending"
@@ -90,13 +90,6 @@
       "title": [
         {
           "properties": {
-            "titleWrap": {
-              "expr": {
-                "Literal": {
-                  "Value": "true"
-                }
-              }
-            },
             "show": {
               "expr": {
                 "Literal": {
@@ -104,17 +97,17 @@
                 }
               }
             },
-            "text": {
+            "heading": {
               "expr": {
                 "Literal": {
-                  "Value": "'Faturamento Total'"
+                  "Value": "'Normal'"
                 }
               }
             },
-            "alignment": {
+            "titleWrap": {
               "expr": {
                 "Literal": {
-                  "Value": "'left'"
+                  "Value": "true"
                 }
               }
             },
@@ -129,17 +122,10 @@
                 }
               }
             },
-            "fontFamily": {
+            "alignment": {
               "expr": {
                 "Literal": {
-                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
-                }
-              }
-            },
-            "bold": {
-              "expr": {
-                "Literal": {
-                  "Value": "false"
+                  "Value": "'left'"
                 }
               }
             },
@@ -150,10 +136,17 @@
                 }
               }
             },
-            "heading": {
+            "bold": {
               "expr": {
                 "Literal": {
-                  "Value": "'Normal'"
+                  "Value": "false"
+                }
+              }
+            },
+            "fontFamily": {
+              "expr": {
+                "Literal": {
+                  "Value": "'''Segoe UI'', wf_segoe-ui_normal, helvetica, arial, sans-serif'"
                 }
               }
             }
@@ -167,6 +160,17 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
                 }
               }
             },
@@ -193,7 +197,7 @@
           }
         }
       ],
-      "divider": [
+      "subTitle": [
         {
           "properties": {
             "show": {
@@ -206,7 +210,7 @@
           }
         }
       ],
-      "subTitle": [
+      "divider": [
         {
           "properties": {
             "show": {

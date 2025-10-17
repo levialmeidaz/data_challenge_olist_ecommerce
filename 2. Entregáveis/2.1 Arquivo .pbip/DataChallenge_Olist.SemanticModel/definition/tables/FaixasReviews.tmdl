@@ -1,0 +1,40 @@
+table FaixasReviews
+	lineageTag: f2fb63ee-7115-4929-9837-8d7ace0ce5af
+
+	column Nota
+		formatString: 0
+		lineageTag: ce6da2c9-173e-4dd9-a39c-b4f215f28257
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Nota]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sort
+		formatString: 0
+		lineageTag: 10599212-6059-4686-9e45-11da39af94da
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Sort]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FaixasReviews = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "Nota", INTEGER, "Sort", INTEGER,
+				    {
+				        {1, 1},
+				        {2, 2},
+				        {3, 3},
+				        {4, 4},
+				        {5, 5}
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = 5304accf514847119e6298ed9aff36b7
+

@@ -7,7 +7,7 @@
     "z": 4000,
     "height": 48.18181818181818,
     "width": 125.45454545454544,
-    "tabOrder": 3000
+    "tabOrder": 2000
   },
   "visual": {
     "visualType": "slicer",
@@ -81,7 +81,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "2017L"
+                                "Value": "2018L"
                               }
                             }
                           ]
