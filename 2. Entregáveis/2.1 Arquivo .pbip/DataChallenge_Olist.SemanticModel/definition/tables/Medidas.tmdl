@@ -144,6 +144,19 @@ table Medidas
 		displayFolder: 3. Clientes e Satisfação
 		lineageTag: 53827a5c-7332-4fb1-8e41-8f2cc1dfee2d
 
+	measure 'Clientes Únicos' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(orders[customer_unique_id]),
+			    FILTER(
+			        VALUES(orders[customer_unique_id]),
+			        CALCULATE(DISTINCTCOUNT(orders[order_id])) = 1
+			    )
+			)
+		formatString: 0
+		displayFolder: 3. Clientes e Satisfação
+		lineageTag: 2c5a39db-2e3a-4266-ad74-8ecbb0e259a8
+
 	measure 'Leads Qualificados' =
 			
 			DISTINCTCOUNT(lead_qualified[mql_id])
@@ -493,19 +506,6 @@ table Medidas
 		formatString: 0
 		displayFolder: 3. Clientes e Satisfação
 		lineageTag: 272078a9-0141-4a0a-9492-f28424d9b949
-
-	measure 'Clientes Únicos' =
-			
-			CALCULATE(
-			    DISTINCTCOUNT(orders[customer_unique_id]),
-			    FILTER(
-			        VALUES(orders[customer_unique_id]),
-			        CALCULATE(DISTINCTCOUNT(orders[order_id])) = 1
-			    )
-			)
-		formatString: 0
-		displayFolder: 3. Clientes e Satisfação
-		lineageTag: 2c5a39db-2e3a-4266-ad74-8ecbb0e259a8
 
 	measure 'Clientes Retidos' = ```
 			

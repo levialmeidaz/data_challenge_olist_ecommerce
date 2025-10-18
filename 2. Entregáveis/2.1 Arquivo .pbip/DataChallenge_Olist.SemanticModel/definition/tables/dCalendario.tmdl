@@ -75,6 +75,17 @@ table dCalendario
 
 		annotation SummarizationSetBy = Automatic
 
+	column 'Ano Mês'
+		dataType: string
+		lineageTag: eff8fdbd-5a0f-4e9d-bf37-80410b4c0555
+		summarizeBy: none
+		sourceColumn: Ano Mês
+		sortByColumn: AnoMês_Ordem
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
 	column AnoMês_Ordem
 		dataType: int64
 		formatString: 0
@@ -90,17 +101,6 @@ table dCalendario
 		lineageTag: 1290434d-c39f-449f-97c0-607948852c15
 		summarizeBy: sum
 		sourceColumn: Mês Número
-
-		annotation SummarizationSetBy = Automatic
-
-	column 'Ano Mês'
-		dataType: string
-		lineageTag: eff8fdbd-5a0f-4e9d-bf37-80410b4c0555
-		summarizeBy: none
-		sourceColumn: Ano Mês
-		sortByColumn: AnoMês_Ordem
-
-		changedProperty = SortByColumn
 
 		annotation SummarizationSetBy = Automatic
 
