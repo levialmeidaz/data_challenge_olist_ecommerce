@@ -21,3 +21,12 @@ Tabela "Geolocation":
     geolocation_lng
 
 - Duplicatas removidas baseado na coluna "geolocation_zip_code_prefix"
+
+
+
+Tabela "Order_Reviews":
+
+- Duplicadas removidas baseado na coluna "review_id".
+
+
+Criação da tabela dEstados, referenciando a tabela "customers" e extraindo somente a coluna State.
